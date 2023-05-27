@@ -31,14 +31,13 @@ h3 {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          i{
+          i {
             color: purple;
             width: 28px;
             height: 28px;
             margin-right: 5px;
             font-size: 18px;
             line-height: 28px;
-
           }
           input {
             height: 30px;
@@ -113,7 +112,6 @@ h3 {
               border: none;
               color: purple;
               cursor: pointer;
-              
             }
           }
         }
@@ -121,71 +119,65 @@ h3 {
     }
   }
 }
-@media screen and (max-width:992px) {
-  .main{
+@media screen and (max-width: 992px) {
+  .main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .mainForm{
+    .mainForm {
       width: 100%;
-      form{
+      form {
         margin: 0 auto;
       }
     }
-    .mainList{
+    .mainList {
       width: 100%;
       margin-top: 20px;
-      table{
+      table {
         margin: 0 auto;
       }
     }
-
   }
-  
 }
-@media screen and (max-width:768px) {
-  .main{
+@media screen and (max-width: 768px) {
+  .main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .mainForm{
+    .mainForm {
       width: 100%;
-      form{
+      form {
         margin: 0 auto;
       }
     }
-    .mainList{
+    .mainList {
       width: 100%;
       margin-top: 20px;
-      table{
-        max-width: 600px;
+      table {
+        width: 400px;
         margin: 0 auto;
       }
     }
-
   }
-  
 }
-@media screen and (max-width:576px) {
-  .main{
+@media screen and (max-width: 576px) {
+  .main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .mainForm{
+    .mainForm {
       width: 100%;
-      form{
+      form {
         margin: 0 auto;
       }
     }
-    .mainList{
+    .mainList {
       width: 100%;
       margin-top: 20px;
-      table{
-        max-width: 380px;
+      table {
+        width: 380px;
         margin: 0 auto;
       }
     }
-
   }
-  
 }

@@ -154,7 +154,7 @@ h3 {
     margin-top: 20px;
   }
   .main .mainList table {
-    max-width: 600px;
+    width: 400px;
     margin: 0 auto;
   }
 }
@@ -175,7 +175,7 @@ h3 {
     margin-top: 20px;
   }
   .main .mainList table {
-    max-width: 380px;
+    width: 380px;
     margin: 0 auto;
   }
 }/*# sourceMappingURL=style.css.map */
