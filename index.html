@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Cafe</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="mainForm">
+                <h2>Tạo sản phẩm</h2>
+                <form action="">
+                    <div class="formInput">
+                        <input type="text" id="ma" placeholder="Mã" hidden>
+                    </div>
+
+                    <div class="formInput">
+                        <i id="tbDanhMuc" class="fa-solid fa-list"></i>
+                        <input list="danhmuc" id="danhMuc" placeholder="Danh mục">
+                        <datalist id="danhmuc">
+                            <option value="Đồ uống">
+                            <option value="Đồ ăn">
+                        </datalist>
+                    </div>
+                    <div class="formInput">
+                        <i id="tbTenMon" class="fa-solid fa-mug-hot"></i>
+                        <input type="text" id="tenMon" placeholder="Tên món">
+                    </div>
+                    <div class="formInput">
+                        <i id="tbGiaMon" class="fa-solid fa-money-check-dollar"></i>
+                        <input type="text" id="giaMon" placeholder="Giá" onkeyup="dinhDangSo('giaMon')">
+                    </div>
+                    <div class="formButton">
+                        <button onclick="themMon()" type="button">Thêm</button>
+                        <button onclick="capNhatMon()" type="button" class="none">Cập nhật</button>
+                        <div id="tbKetQua" class="tbKetQua">
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="listKieu1" class="mainList">
+                <div class="listStyle">
+                    <h2>Danh sách sản phẩm kiểu 1</h1>
+                        <table>
+                            <tr id="listTitle" class="none">
+                                <th>Danh mục</th>
+                                <th>Tên món</th>
+                                <th>Giá</th>
+                                <th><i class="fa-solid fa-gear"></i></th>
+                            </tr>
+                            <tbody id="listSanPham">
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+
+            <div id="listKieu2" class="mainList">
+                <div class="listStyle">
+                    <h2>Danh sách sản phẩm kiểu 2</h1>
+                        <table>
+                            <tbody id="listSanPham2">
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- link js -->
+    <script src="./main.js"></script>
+</body>
+
+</html>

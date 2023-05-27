@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.none {
+  display: none;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.container .main {
+  display: flex;
+  justify-content: space-around;
+}
+.container .main .mainForm {
+  height: 230px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  padding: 20px;
+}
+.container .main .mainForm form {
+  width: 380px;
+}
+.container .main .mainForm form .formInput {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .main .mainForm form .formInput i {
+  color: purple;
+  width: 28px;
+  height: 28px;
+  margin-right: 5px;
+  font-size: 18px;
+  line-height: 28px;
+}
+.container .main .mainForm form .formInput input {
+  height: 30px;
+  width: 100%;
+  padding: 0 10px;
+}
+.container .main .mainForm form .formButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .main .mainForm form .formButton button {
+  background-color: purple;
+  color: white;
+  width: 50%;
+  height: 40px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 5px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+.container .main .mainForm form .formButton .tbKetQua {
+  width: 100%;
+  margin-top: 5px;
+}
+.container .main .mainForm form .formButton .tbKetQua h3 {
+  text-align: center;
+}
+.container .main .mainList {
+  padding: 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.container .main .mainList .listStyle {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.container .main .mainList .listStyle table {
+  width: 400px;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+.container .main .mainList .listStyle table tr th {
+  padding: 5px 10px;
+  background-color: purple;
+  color: white;
+  font-size: 16px;
+  border: 1px solid silver;
+  text-transform: capitalize;
+}
+.container .main .mainList .listStyle table tr td.number {
+  text-align: right;
+}
+.container .main .mainList .listStyle table tr td {
+  padding: 5px 10px;
+  font-size: 18px;
+  text-transform: capitalize;
+  border: 1px solid silver;
+}
+.container .main .mainList .listStyle table tr td:last-child {
+  text-align: center;
+}
+.container .main .mainList .listStyle table tr td button {
+  width: 20px;
+  height: 20px;
+  background-color: none;
+  border: none;
+  color: purple;
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */
