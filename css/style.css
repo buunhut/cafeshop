@@ -154,7 +154,28 @@ h3 {
     margin-top: 20px;
   }
   .main .mainList table {
-    max-width: 400px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 576px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .main .mainForm {
+    width: 100%;
+  }
+  .main .mainForm form {
+    margin: 0 auto;
+  }
+  .main .mainList {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .main .mainList table {
+    max-width: 380px;
     margin: 0 auto;
   }
 }/*# sourceMappingURL=style.css.map */
