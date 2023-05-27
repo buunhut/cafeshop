@@ -173,9 +173,10 @@ h3 {
   .main .mainList {
     width: 100%;
     margin-top: 20px;
+    padding: 20px 5px;
   }
   .main .mainList table {
-    width: 340px;
+    width: 300px;
     margin: 0 auto;
   }
 }/*# sourceMappingURL=style.css.map */
