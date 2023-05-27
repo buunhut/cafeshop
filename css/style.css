@@ -176,7 +176,10 @@ h3 {
     padding: 20px 5px;
   }
   .main .mainList table {
-    width: 300px;
+    width: 100%;
     margin: 0 auto;
+  }
+  .main .mainList table tr th, .main .mainList table td {
+    padding: 5px;
   }
 }/*# sourceMappingURL=style.css.map */
