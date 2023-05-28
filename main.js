@@ -30,9 +30,11 @@ function themMon() {
 
   // lưu vào local
   localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
+
   // lưu vào local
   localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
-  setValueInput("", "", "");
+
+
 }
 
 //render giao diện
@@ -209,6 +211,7 @@ function layDuLieuInput() {
     // ktra xem sản phẩm có chưa, nếu có thì ko tạo nữa
     for (var i = 0; i < listSanPham.length; i++) {
       if (tenMon == listSanPham[i].tenmon) {
+        document.getElementById("tbTenMon").style.color = "red";
         document.getElementById("tbKetQua").innerHTML =
           "<h3 style='color:red'>Sản phẩm đã có rồi :( </h3>";
         return;
@@ -239,6 +242,10 @@ function layDuLieuInput() {
 
       document.getElementById("tbKetQua").innerHTML =
         "<h3 style='color:purple'>Đã lưu :) </h3>";
+
+
+      setValueInput("", "", "");
+
     }
   }
 }
