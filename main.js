@@ -33,20 +33,20 @@ function themMon() {
 
   // lưu vào local
   localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
-
-
 }
 
 //render giao diện
 function renderGiaoDien() {
   // hiển thị ra giao hiện
-  // if (cayDanhMuc.length >= 1) {
-  //   document.getElementById("listKieu2").classList.remove("none");
-  // } else {
-  //   document.getElementById("listTitle").classList.add("none");
-  //   document.getElementById("listKieu1").classList.add("none");
-  //   document.getElementById("listKieu2").classList.add("none");
-  // }
+  if (listSanPham.length < 1) {
+    document.getElementById("listTitle").classList.add("none");
+    document.getElementById("listKieu1").classList.add("none");
+    document.getElementById("listKieu2").classList.add("none");
+  } else {
+    document.getElementById("listTitle").classList.remove("none");
+    document.getElementById("listKieu1").classList.remove("none");
+    document.getElementById("listKieu2").classList.remove("none");
+  }
 
   var content = "";
   cayDanhMuc.forEach(function (danhMucitem) {
@@ -58,16 +58,13 @@ function renderGiaoDien() {
       }
     }
     if (dem > 1) {
-      document.getElementById("listTitle").classList.remove("none");
 
       content += `
       <tr>
         <td rowspan="${dem}">${danhMucitem}</td>
       </tr> 
     `;
-    } else {
-      document.getElementById("listTitle").classList.add("none");
-    }
+    } 
     listSanPham.forEach(function (monItem, index) {
       // tìm được vị trí món cần lấy
       if (danhMucitem == monItem.danhmuc) {
@@ -108,6 +105,8 @@ function renderGiaoDien() {
       <th>Giá</th>
       <th><i class="fa-solid fa-gear"></i></th>
     </tr>
+    <tbody id="listSanPham2">
+
   `;
     }
 
@@ -130,6 +129,11 @@ function renderGiaoDien() {
           `;
       }
     });
+    
+    `
+    </tbody>
+    `
+
   });
   document.getElementById("listSanPham2").innerHTML = content;
 }
@@ -203,7 +207,7 @@ function layDuLieuInput() {
 
   if (!valid) {
     document.getElementById("tbKetQua").innerHTML =
-      "<h3 style='color:red'>Lỗi :(</h3>";
+      "<h3 style='color:red'>Lỗi, Không được bỏ trống :(</h3>";
     return;
   } else {
     document.getElementById("tbKetQua").innerHTML = "";
@@ -213,7 +217,7 @@ function layDuLieuInput() {
       if (tenMon == listSanPham[i].tenmon) {
         document.getElementById("tbTenMon").style.color = "red";
         document.getElementById("tbKetQua").innerHTML =
-          "<h3 style='color:red'>Sản phẩm đã có rồi :( </h3>";
+          "<h3 style='color:red'>Lỗi, Sản phẩm đã có rồi :( </h3>";
         return;
       }
     }
@@ -243,9 +247,7 @@ function layDuLieuInput() {
       document.getElementById("tbKetQua").innerHTML =
         "<h3 style='color:purple'>Đã lưu :) </h3>";
 
-
       setValueInput("", "", "");
-
     }
   }
 }
@@ -314,7 +316,12 @@ function layDuLieuChinhSua(index) {
           localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
 
           document.getElementById("tbKetQua").innerHTML =
-            "<h3 style='color:purple'>Đã cập nhật :) </h3>";
+            "<h3 style='color:$primaryColor'>Đã cập nhật :) </h3>";
+            //set icon thành black
+            document.getElementById("tbDanhMuc").style.color = "black";
+            document.getElementById("tbTenMon").style.color = "black";
+            document.getElementById("tbGiaMon").style.color = "black";
+
 
           //render
           renderGiaoDien();
@@ -341,7 +348,7 @@ function checkRong(id, idTb) {
     document.getElementById(idTb).style.color = "red";
     return false;
   } else {
-    document.getElementById(idTb).style.color = "purple";
+    document.getElementById(idTb).style.color = "black";
     return true;
   }
 }
