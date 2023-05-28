@@ -166,7 +166,7 @@ function xoaSanPham(index, danhmuc, ten) {
   // lưu vào local
   localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
 
-  //set icon black + thông báo ""
+  //set icon purple + thông báo ""
   setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
   document.getElementById("tbKetQua").innerHTML =
     "<h3 style='color:purple;'>Đã xóa thành công :)</h3>";
@@ -187,7 +187,7 @@ function suaSanPham(index) {
     Lưu
   </button>
   `;
-  //set icon black + thông báo ""
+  //set icon purple + thông báo ""
   setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
   document.getElementById("tbKetQua").innerHTML = "";
 }
@@ -346,11 +346,21 @@ function setValueInput(danhmuc, ten, gia) {
   document.getElementById("giaMon").value = gia;
 }
 
-//set icon black + thông báo ""
+//set icon purple + thông báo ""
 function setAllDone(iddanhmuc, idten, idgiamon) {
-  document.getElementById(iddanhmuc).style.color = "black";
-  document.getElementById(idten).style.color = "black";
-  document.getElementById(idgiamon).style.color = "black";
+  document.getElementById(iddanhmuc).style.color = "purple";
+  document.getElementById(idten).style.color = "purple";
+  document.getElementById(idgiamon).style.color = "purple";
+}
+
+// tìm kiếm sản phảm
+function timKiemSanPham(){
+  var tenSanPham = document.getElementById("timKiem").value.toLowerCase();
+  listSanPham.forEach(function(item, index){
+    if(item.tenmon == tenSanPham){
+      console.log("đã tìm thấy");
+    }
+  })
 }
 
 //valid checkRong
@@ -360,7 +370,7 @@ function checkRong(id, idTb) {
     document.getElementById(idTb).style.color = "red";
     return false;
   } else {
-    document.getElementById(idTb).style.color = "black";
+    document.getElementById(idTb).style.color = "purple";
     return true;
   }
 }

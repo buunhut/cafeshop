@@ -27,7 +27,7 @@
 
                     <div class="formInput">
                         <i id="tbDanhMuc" class="fa-solid fa-list"></i>
-                        <input list="danhmuc" id="danhMuc" maxlength="20" placeholder="Danh mục">
+                        <input list="danhmuc" id="danhMuc" maxlength="20" placeholder="Danh mục" onblur="checkRong('danhMuc', 'tbDanhMuc')">
                         <datalist id="danhmuc">
                             <option value="Đồ uống">
                             <option value="Đồ ăn">
@@ -35,11 +35,11 @@
                     </div>
                     <div class="formInput">
                         <i id="tbTenMon" class="fa-solid fa-mug-hot"></i>
-                        <input type="text" id="tenMon" maxlength="20" placeholder="Tên món">
+                        <input type="text" id="tenMon" maxlength="20" placeholder="Tên món" onblur="checkRong('tenMon', 'tbTenMon')">
                     </div>
                     <div class="formInput">
                         <i id="tbGiaMon" class="fa-solid fa-money-check-dollar"></i>
-                        <input type="text" id="giaMon" maxlength="9" placeholder="Giá" onkeyup="dinhDangSo('giaMon')">
+                        <input type="text" id="giaMon" maxlength="9" placeholder="Giá" onkeyup="dinhDangSo('giaMon')" onblur="checkRong('giaMon', 'tbGiaMon')">  
                     </div>
                     <div class="formButton">
                         <div id="button" class="button">
@@ -57,7 +57,7 @@
                     <h2>Quản lý sản phẩm</h2>
                     <div class="formInput timKiem">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="timKiem" maxlength="20" placeholder="Tìm sản phẩm...," onkeyup="timTimKiem('timKiem')">
+                        <input type="text" id="timKiem" maxlength="20" placeholder="Tìm sản phẩm...," onkeyup="timKiemSanPham()">
                     </div>
                 </form>
             </div>
