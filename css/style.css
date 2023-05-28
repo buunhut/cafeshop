@@ -134,6 +134,7 @@ h3 {
     margin-top: 20px;
   }
   .main .mainList table {
+    width: 100%;
     margin: 0 auto;
   }
 }
@@ -154,32 +155,40 @@ h3 {
     margin-top: 20px;
   }
   .main .mainList table {
-    width: 400px;
+    width: 100%;
     margin: 0 auto;
   }
 }
 @media screen and (max-width: 576px) {
-  .main {
+  .container .main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px 5px;
   }
-  .main .mainForm {
+  .container .main .mainForm {
     width: 100%;
+    padding: 0px;
   }
-  .main .mainForm form {
+  .container .main .mainForm form .formInput {
+    width: 100%;
+    margin-top: 5px;
+  }
+  .container .main .mainList {
+    width: 100%;
+    padding: 10px 0px;
+  }
+  .container .main .mainList .listStyle {
+    width: 100%;
     margin: 0 auto;
+    padding: 0;
+    overflow-x: scroll;
   }
-  .main .mainList {
+  .container .main .mainList .listStyle table {
     width: 100%;
-    margin-top: 20px;
-    padding: 20px 5px;
   }
-  .main .mainList table {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .main .mainList table tr th, .main .mainList table td {
+  .container .main .mainList .listStyle table tr th,
+  .container .main .mainList .listStyle table td {
     padding: 5px;
   }
 }/*# sourceMappingURL=style.css.map */

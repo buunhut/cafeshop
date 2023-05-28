@@ -134,6 +134,7 @@ h3 {
       width: 100%;
       margin-top: 20px;
       table {
+        width: 100%;
         margin: 0 auto;
       }
     }
@@ -154,34 +155,50 @@ h3 {
       width: 100%;
       margin-top: 20px;
       table {
-        width: 400px;
+        width: 100%;
         margin: 0 auto;
       }
     }
   }
 }
 @media screen and (max-width: 576px) {
+  .container {
   .main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px 5px;
+
     .mainForm {
       width: 100%;
+      padding: 0px;
       form {
-        margin: 0 auto;
+
+
+      .formInput {
+        width: 100%;
+        margin-top: 5px;
       }
+    }
+
     }
     .mainList {
       width: 100%;
-      margin-top: 20px;
-      padding: 20px 5px;
-      table {
+      padding: 10px 0px;
+      .listStyle {
         width: 100%;
         margin: 0 auto;
-        tr th, td{
-          padding: 5px;
+        padding: 0;
+        overflow-x: scroll;
+        table {
+          width: 100%;
+          tr th,
+          td {
+            padding: 5px;
+          }
         }
       }
     }
   }
+}
 }

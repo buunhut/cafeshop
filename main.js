@@ -228,3 +228,7 @@ function dinhDangSo(id){
   document.getElementById(id).value = Number(checkInput).toLocaleString();
   return checkInput;
 }
+
+
+
+//
