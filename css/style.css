@@ -181,7 +181,7 @@ h3 {
   .container .main .mainList .listStyle {
     width: 100%;
     margin: 0 auto;
-    padding: 0;
+    padding: 10px;
     overflow-x: scroll;
   }
   .container .main .mainList .listStyle table {
