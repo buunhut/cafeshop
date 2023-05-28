@@ -38,15 +38,13 @@ function themMon() {
 //render giao diện
 function renderGiaoDien() {
   // hiển thị ra giao hiện
-  if (cayDanhMuc.length >= 1) {
-    document.getElementById("listTitle").classList.remove("none");
-    document.getElementById("listKieu1").classList.remove("none");
-    document.getElementById("listKieu2").classList.remove("none");
-  } else {
-    document.getElementById("listTitle").classList.add("none");
-    document.getElementById("listKieu1").classList.add("none");
-    document.getElementById("listKieu2").classList.add("none");
-  }
+  // if (cayDanhMuc.length >= 1) {
+  //   document.getElementById("listKieu2").classList.remove("none");
+  // } else {
+  //   document.getElementById("listTitle").classList.add("none");
+  //   document.getElementById("listKieu1").classList.add("none");
+  //   document.getElementById("listKieu2").classList.add("none");
+  // }
 
   var content = "";
   cayDanhMuc.forEach(function (danhMucitem) {
@@ -58,11 +56,15 @@ function renderGiaoDien() {
       }
     }
     if (dem > 1) {
+      document.getElementById("listTitle").classList.remove("none");
+
       content += `
       <tr>
         <td rowspan="${dem}">${danhMucitem}</td>
       </tr> 
     `;
+    } else {
+      document.getElementById("listTitle").classList.add("none");
     }
     listSanPham.forEach(function (monItem, index) {
       // tìm được vị trí món cần lấy
@@ -84,7 +86,6 @@ function renderGiaoDien() {
   });
   document.getElementById("listSanPham").innerHTML = content;
 
-  
   // hiển thị ra giao hiện kiều 2
   var content = "";
   cayDanhMuc.forEach(function (danhMucitem) {
@@ -94,7 +95,6 @@ function renderGiaoDien() {
         dem++;
       }
     }
-    console.log(dem)
     if (dem > 1) {
       content += `
     <tr>
@@ -176,6 +176,7 @@ function suaSanPham(index) {
   document.getElementById("button").innerHTML = `
   <button id="suaSanPham" onclick="capNhatMon('${index}')" type="button">Cập nhật</button>
   `;
+  document.getElementById("tbKetQua").innerHTML = "";
 }
 
 // cập nhật sản phẩm
