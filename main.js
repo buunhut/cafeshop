@@ -24,15 +24,16 @@ if (listSanPhamLocal != null) {
 renderGiaoDien();
 
 function themMon() {
+
   layDuLieuInput();
 
   renderGiaoDien();
 
   // lưu vào local
   localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
-
   // lưu vào local
   localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
+
 }
 
 //render giao diện
@@ -58,13 +59,12 @@ function renderGiaoDien() {
       }
     }
     if (dem > 1) {
-
       content += `
       <tr>
         <td rowspan="${dem}">${danhMucitem}</td>
       </tr> 
     `;
-    } 
+    }
     listSanPham.forEach(function (monItem, index) {
       // tìm được vị trí món cần lấy
       if (danhMucitem == monItem.danhmuc) {
@@ -129,11 +129,10 @@ function renderGiaoDien() {
           `;
       }
     });
-    
+
     `
     </tbody>
-    `
-
+    `;
   });
   document.getElementById("listSanPham2").innerHTML = content;
 }
@@ -168,6 +167,10 @@ function xoaSanPham(index, danhmuc, ten) {
   localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
   // lưu vào local
   localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
+
+  //set icon black + thông báo ""
+  setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
+  document.getElementById("tbKetQua").innerHTML = "<h3 style='color:purple;'>Đã xóa thành công :)</h3>"
 }
 
 //  sửa sản phẩm
@@ -182,6 +185,8 @@ function suaSanPham(index) {
   document.getElementById("button").innerHTML = `
   <button id="suaSanPham" onclick="capNhatMon('${index}')" type="button">Cập nhật</button>
   `;
+  //set icon black + thông báo ""
+  setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
   document.getElementById("tbKetQua").innerHTML = "";
 }
 
@@ -192,6 +197,7 @@ function capNhatMon(index) {
   layDuLieuChinhSua(index);
 }
 
+// lấy dữ liệu 
 function layDuLieuInput() {
   //lấy dữ liệu input
   var danhMuc = document.getElementById("danhMuc").value;
@@ -238,19 +244,16 @@ function layDuLieuInput() {
       }
       var mon = new LopMon(danhMuc, tenMon, giaMon);
       listSanPham.push(mon);
-
-      // lưu vào local
-      localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
-      // lưu vào local
-      localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
-
-      document.getElementById("tbKetQua").innerHTML =
-        "<h3 style='color:purple'>Đã lưu :) </h3>";
-
-      setValueInput("", "", "");
     }
+
+    document.getElementById("tbKetQua").innerHTML =
+      "<h3 style='color:purple'>Đã tạo thành công :) </h3>";
+
+    setValueInput("", "", "");
   }
 }
+
+//lấy dữ liệu lúc chỉnh sửa
 function layDuLieuChinhSua(index) {
   //lấy dữ liệu input
   var danhMuc = document.getElementById("danhMuc").value;
@@ -266,7 +269,7 @@ function layDuLieuChinhSua(index) {
 
   if (!valid) {
     document.getElementById("tbKetQua").innerHTML =
-      "<h3 style='color:red'>Lỗi :(</h3>";
+      "<h3 style='color:red'>Lỗi, Không được bỏ trống :(</h3>";
     return;
   } else {
     document.getElementById("tbKetQua").innerHTML = "";
@@ -315,13 +318,13 @@ function layDuLieuChinhSua(index) {
           // lưu vào local
           localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
 
-          document.getElementById("tbKetQua").innerHTML =
-            "<h3 style='color:$primaryColor'>Đã cập nhật :) </h3>";
-            //set icon thành black
-            document.getElementById("tbDanhMuc").style.color = "black";
-            document.getElementById("tbTenMon").style.color = "black";
-            document.getElementById("tbGiaMon").style.color = "black";
 
+
+
+          setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon")
+          document.getElementById("tbKetQua").innerHTML =
+            "<h3 style='color:purple'>Cập nhật thành công :) </h3>";
+            
 
           //render
           renderGiaoDien();
@@ -334,11 +337,19 @@ function layDuLieuChinhSua(index) {
     }
   }
 }
+
 // reset input
 function setValueInput(danhmuc, ten, gia) {
   document.getElementById("danhMuc").value = danhmuc;
   document.getElementById("tenMon").value = ten;
   document.getElementById("giaMon").value = gia;
+}
+
+//set icon black + thông báo ""
+function setAllDone(iddanhmuc, idten, idgiamon) {
+  document.getElementById(iddanhmuc).style.color = "black";
+  document.getElementById(idten).style.color = "black";
+  document.getElementById(idgiamon).style.color = "black";
 }
 
 //valid checkRong
