@@ -43,14 +43,21 @@
                     </div>
                     <div class="formButton">
                         <div id="button" class="button">
-                            <button id="themSanPham" onclick="themMon()" type="button">Thêm</button>
+                            <button id="themSanPham" onclick="themMon()" type="button">
+                                <i class="fa-solid fa-circle-plus"></i>
+                                Thêm
+                            </button>
                         </div>
-
-
 
                         <div id="tbKetQua" class="tbKetQua">
 
                         </div>
+                    </div>
+                    <hr>
+                    <h2>Quản lý sản phẩm</h2>
+                    <div class="formInput timKiem">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="timKiem" maxlength="20" placeholder="Tìm sản phẩm...," onkeyup="timTimKiem('timKiem')">
                     </div>
                 </form>
             </div>

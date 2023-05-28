@@ -23,7 +23,7 @@ $primaryTextColor: white;
     display: flex;
     justify-content: space-around;
     .mainForm {
-      height: 230px;
+      height: 360px;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
         rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
       padding: 20px;
@@ -31,6 +31,20 @@ $primaryTextColor: white;
       border-radius: 10px;
       form {
         width: 380px;
+        hr{
+          margin: 20px 0;
+        }
+        .formInput.timKiem{
+          background-color: $primaryColor;
+          width: 100%;
+          padding: 10px;
+          border-radius: 5px;
+          margin-top: 5px;
+          i{
+            color: white;
+            margin-top: 3px;
+          }
+        }
         .formInput {
           margin-bottom: 5px;
           display: flex;

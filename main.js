@@ -24,7 +24,6 @@ if (listSanPhamLocal != null) {
 renderGiaoDien();
 
 function themMon() {
-
   layDuLieuInput();
 
   renderGiaoDien();
@@ -33,7 +32,6 @@ function themMon() {
   localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
   // lưu vào local
   localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
-
 }
 
 //render giao diện
@@ -170,7 +168,8 @@ function xoaSanPham(index, danhmuc, ten) {
 
   //set icon black + thông báo ""
   setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
-  document.getElementById("tbKetQua").innerHTML = "<h3 style='color:purple;'>Đã xóa thành công :)</h3>"
+  document.getElementById("tbKetQua").innerHTML =
+    "<h3 style='color:purple;'>Đã xóa thành công :)</h3>";
 }
 
 //  sửa sản phẩm
@@ -183,7 +182,10 @@ function suaSanPham(index) {
   setValueInput(danhmuc, ten, gia);
   //đóng nút thêm
   document.getElementById("button").innerHTML = `
-  <button id="suaSanPham" onclick="capNhatMon('${index}')" type="button">Cập nhật</button>
+  <button id="suaSanPham" onclick="capNhatMon('${index}')" type="button">
+    <i class="fa-solid fa-floppy-disk"></i>
+    Lưu
+  </button>
   `;
   //set icon black + thông báo ""
   setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
@@ -197,11 +199,11 @@ function capNhatMon(index) {
   layDuLieuChinhSua(index);
 }
 
-// lấy dữ liệu 
+// lấy dữ liệu
 function layDuLieuInput() {
   //lấy dữ liệu input
-  var danhMuc = document.getElementById("danhMuc").value;
-  var tenMon = document.getElementById("tenMon").value;
+  var danhMuc = document.getElementById("danhMuc").value.toLowerCase();
+  var tenMon = document.getElementById("tenMon").value.toLowerCase();
   var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
 
   // valid
@@ -256,8 +258,8 @@ function layDuLieuInput() {
 //lấy dữ liệu lúc chỉnh sửa
 function layDuLieuChinhSua(index) {
   //lấy dữ liệu input
-  var danhMuc = document.getElementById("danhMuc").value;
-  var tenMon = document.getElementById("tenMon").value;
+  var danhMuc = document.getElementById("danhMuc").value.toLowerCase();
+  var tenMon = document.getElementById("tenMon").value.toLowerCase();
   var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
 
   // valid
@@ -318,19 +320,18 @@ function layDuLieuChinhSua(index) {
           // lưu vào local
           localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
 
-
-
-
-          setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon")
+          setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
           document.getElementById("tbKetQua").innerHTML =
             "<h3 style='color:purple'>Cập nhật thành công :) </h3>";
-            
 
           //render
           renderGiaoDien();
           setValueInput("", "", "");
           document.getElementById("button").innerHTML = `
-            <button id="themSanPham" onclick="themMon()" type="button">Thêm</button>
+            <button id="themSanPham" onclick="themMon()" type="button">
+              <i class="fa-solid fa-circle-plus"></i>
+              Thêm
+            </button>
           `;
         }
       }
