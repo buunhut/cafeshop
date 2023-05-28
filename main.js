@@ -24,56 +24,15 @@ if (listSanPhamLocal != null) {
 renderGiaoDien();
 
 function themMon() {
-  //lấy dữ liệu input
-  var danhMuc = document.getElementById("danhMuc").value;
-  var tenMon = document.getElementById("tenMon").value;
-  var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, '');
+  layDuLieuInput();
 
-  // valid
-  valid = true;
-  valid = 
-  checkRong("danhMuc", "tbDanhMuc") &
-  checkRong("tenMon", "tbTenMon") &
-  checkRong("giaMon", "tbGiaMon");
+  renderGiaoDien();
 
-  if (!valid) {
-    document.getElementById("tbKetQua").innerHTML =
-      "<h3 style='color:red'>Lỗi :(</h3>";
-    return;
-  } else {
-    document.getElementById("tbKetQua").innerHTML =
-    "";
-
-    if (cayDanhMuc.length === 0) {
-      cayDanhMuc.push(danhMuc);
-      var mon = new LopMon(danhMuc, tenMon, giaMon);
-      listSanPham.push(mon);
-    } else {
-      var count = 0;
-      for (var i = 0; i < cayDanhMuc.length; i++) {
-        if (danhMuc != cayDanhMuc[i]) {
-          count++;
-          if (count == cayDanhMuc.length) {
-            cayDanhMuc.push(danhMuc);
-          }
-        }
-      }
-      var mon = new LopMon(danhMuc, tenMon, giaMon);
-      listSanPham.push(mon);
-    }
-
-    renderGiaoDien();
-
-    // lưu vào local
-    localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
-    // lưu vào local
-    localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
-    setValueInput("", "", "");
-
-    document.getElementById("tbKetQua").innerHTML =
-    "<h3 style='color:purple'>Đã lưu :) </h3>";
-
-  }
+  // lưu vào local
+  localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
+  // lưu vào local
+  localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
+  setValueInput("", "", "");
 }
 
 //render giao diện
@@ -98,11 +57,13 @@ function renderGiaoDien() {
         dem++;
       }
     }
-    content += `
-    <tr>
-      <td rowspan="${dem}">${danhMucitem}</td>
-    </tr> 
-  `;
+    if (dem > 1) {
+      content += `
+      <tr>
+        <td rowspan="${dem}">${danhMucitem}</td>
+      </tr> 
+    `;
+    }
     listSanPham.forEach(function (monItem, index) {
       // tìm được vị trí món cần lấy
       if (danhMucitem == monItem.danhmuc) {
@@ -123,24 +84,35 @@ function renderGiaoDien() {
   });
   document.getElementById("listSanPham").innerHTML = content;
 
+  
   // hiển thị ra giao hiện kiều 2
   var content = "";
   cayDanhMuc.forEach(function (danhMucitem) {
-    content += `
-      <tr>
-        <th colspan="4">${danhMucitem}</th>
-      </tr> 
-      <tr>
-        <th>Stt</th>
-        <th>Tên món</th>
-        <th>Giá</th>
-        <th><i class="fa-solid fa-gear"></i></th>
-      </tr>
-`;
+    var dem = 1;
+    for (var n = 0; n < listSanPham.length; n++) {
+      if (danhMucitem == listSanPham[n].danhmuc) {
+        dem++;
+      }
+    }
+    console.log(dem)
+    if (dem > 1) {
+      content += `
+    <tr>
+      <th colspan="4">${danhMucitem}</th>
+    </tr> 
+    <tr>
+      <th>Stt</th>
+      <th>Tên món</th>
+      <th>Giá</th>
+      <th><i class="fa-solid fa-gear"></i></th>
+    </tr>
+  `;
+    }
+
     var stt = 1;
     listSanPham.forEach(function (monItem, index) {
       // tìm được vị trí món cần lấy
-      if (danhMucitem == monItem.danhmuc) {
+      if (monItem.danhmuc == danhMucitem) {
         content += `
             <tr>
               <td class="number">${stt++}</td>
@@ -192,6 +164,161 @@ function xoaSanPham(index, danhmuc, ten) {
   localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
 }
 
+//  sửa sản phẩm
+function suaSanPham(index) {
+  // lấy dữ liệu sản phẩm cần sửa
+  var danhmuc = listSanPham[index].danhmuc;
+  var ten = listSanPham[index].tenmon;
+  var gia = Number(listSanPham[index].giamon).toLocaleString();
+  // gán dữ liệu sản phầm cần sửa vào ô input
+  setValueInput(danhmuc, ten, gia);
+  //đóng nút thêm
+  document.getElementById("button").innerHTML = `
+  <button id="suaSanPham" onclick="capNhatMon('${index}')" type="button">Cập nhật</button>
+  `;
+}
+
+// cập nhật sản phẩm
+function capNhatMon(index) {
+  // var viTri = index;
+  // lấy dữ liệu input
+  layDuLieuChinhSua(index);
+}
+
+function layDuLieuInput() {
+  //lấy dữ liệu input
+  var danhMuc = document.getElementById("danhMuc").value;
+  var tenMon = document.getElementById("tenMon").value;
+  var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
+
+  // valid
+  valid = true;
+  valid =
+    checkRong("danhMuc", "tbDanhMuc") &
+    checkRong("tenMon", "tbTenMon") &
+    checkRong("giaMon", "tbGiaMon");
+
+  if (!valid) {
+    document.getElementById("tbKetQua").innerHTML =
+      "<h3 style='color:red'>Lỗi :(</h3>";
+    return;
+  } else {
+    document.getElementById("tbKetQua").innerHTML = "";
+
+    // ktra xem sản phẩm có chưa, nếu có thì ko tạo nữa
+    for (var i = 0; i < listSanPham.length; i++) {
+      if (tenMon == listSanPham[i].tenmon) {
+        document.getElementById("tbKetQua").innerHTML =
+          "<h3 style='color:red'>Sản phẩm đã có rồi :( </h3>";
+        return;
+      }
+    }
+
+    if (cayDanhMuc.length === 0) {
+      cayDanhMuc.push(danhMuc);
+      var mon = new LopMon(danhMuc, tenMon, giaMon);
+      listSanPham.push(mon);
+    } else {
+      var count = 0;
+      for (var i = 0; i < cayDanhMuc.length; i++) {
+        if (danhMuc != cayDanhMuc[i]) {
+          count++;
+          if (count == cayDanhMuc.length) {
+            cayDanhMuc.push(danhMuc);
+          }
+        }
+      }
+      var mon = new LopMon(danhMuc, tenMon, giaMon);
+      listSanPham.push(mon);
+
+      // lưu vào local
+      localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
+      // lưu vào local
+      localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
+
+      document.getElementById("tbKetQua").innerHTML =
+        "<h3 style='color:purple'>Đã lưu :) </h3>";
+    }
+  }
+}
+function layDuLieuChinhSua(index) {
+  //lấy dữ liệu input
+  var danhMuc = document.getElementById("danhMuc").value;
+  var tenMon = document.getElementById("tenMon").value;
+  var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
+
+  // valid
+  valid = true;
+  valid =
+    checkRong("danhMuc", "tbDanhMuc") &
+    checkRong("tenMon", "tbTenMon") &
+    checkRong("giaMon", "tbGiaMon");
+
+  if (!valid) {
+    document.getElementById("tbKetQua").innerHTML =
+      "<h3 style='color:red'>Lỗi :(</h3>";
+    return;
+  } else {
+    document.getElementById("tbKetQua").innerHTML = "";
+
+    // ktra xem sản phẩm có chưa, đếm sản phẩm đã có
+    var countSp = 0;
+    listSanPham.forEach(function (item, index) {
+      if (item.tenmon == tenMon) {
+        countSp++;
+      }
+    });
+    if (countSp > 1) {
+      document.getElementById("tbKetQua").innerHTML =
+        "<h3 style='color:red'>Trùng tên sản phẩm :(</h3>";
+      return;
+    } else {
+      if (cayDanhMuc.length === 0) {
+        cayDanhMuc.push(danhMuc);
+        var mon = new LopMon(danhMuc, tenMon, giaMon);
+        listSanPham[index] = mon;
+      } else {
+        var count = 0;
+        for (var i = 0; i < cayDanhMuc.length; i++) {
+          if (danhMuc != cayDanhMuc[i]) {
+            count++;
+            if (count == cayDanhMuc.length) {
+              cayDanhMuc.push(danhMuc);
+            }
+          }
+        }
+        var mon = new LopMon(danhMuc, tenMon, giaMon);
+        listSanPham[index] = mon;
+        var countSp = 0;
+        for (var i = 0; i < listSanPham.length; i++) {
+          if (listSanPham[i].tenmon == tenMon) {
+            countSp++;
+          }
+        }
+        if (countSp >= 2) {
+          document.getElementById("tbKetQua").innerHTML =
+            "<h3 style='color:red'>Trùng tên sản phẩm :(</h3>";
+          return;
+        } else {
+          // lưu vào local
+          localStorage.setItem("caydanhmuc", JSON.stringify(cayDanhMuc));
+          // lưu vào local
+          localStorage.setItem("listsanpham", JSON.stringify(listSanPham));
+
+          document.getElementById("tbKetQua").innerHTML =
+            "<h3 style='color:purple'>Đã cập nhật :) </h3>";
+
+          //render
+          renderGiaoDien();
+          setValueInput("", "", "");
+          document.getElementById("button").innerHTML = `
+            <button id="themSanPham" onclick="themMon()" type="button">Thêm</button>
+          `;
+        }
+      }
+    }
+  }
+}
 // reset input
 function setValueInput(danhmuc, ten, gia) {
   document.getElementById("danhMuc").value = danhmuc;
@@ -212,7 +339,7 @@ function checkRong(id, idTb) {
 }
 
 // onchange định dạng số
-function dinhDangSo(id){
+function dinhDangSo(id) {
   n = document.getElementById(id).value;
   //chỉ lấy số từ input
   var chiLaySo = /[0-9]/g;
@@ -228,7 +355,5 @@ function dinhDangSo(id){
   document.getElementById(id).value = Number(checkInput).toLocaleString();
   return checkInput;
 }
-
-
 
 //
