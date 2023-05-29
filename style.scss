@@ -14,6 +14,7 @@ h3 {
 }
 // biến dùng chung
 $primaryColor: purple;
+$secondaryColor: white;
 $primaryTextColor: white;
 .container {
   max-width: 1400px;
@@ -119,7 +120,7 @@ $primaryTextColor: white;
       .listStyle {
         width: 100%;
         margin-bottom: 20px;
-        h1 {
+        h2 {
         }
         table {
           width: 400px;
@@ -132,6 +133,17 @@ $primaryTextColor: white;
             font-size: 16px;
             border: 1px solid silver;
             text-transform: capitalize;
+            #danhMucAz, #danhMucZa, #sanPhamAz, #sanPhamZa,
+            #giaAz, #giaZa{
+              background-color: $secondaryColor;
+              padding: 1px 2px;
+              border: none;
+              font-size: 10px;
+              margin-left: 10px;
+
+            
+            }
+
           }
           tr td.number {
             text-align: right;
@@ -153,7 +165,9 @@ $primaryTextColor: white;
               border: none;
               color: $primaryColor;
               cursor: pointer;
+
             }
+
           }
         }
       }

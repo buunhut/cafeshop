@@ -73,9 +73,34 @@
                     <h2>Danh sách sản phẩm kiểu 1</h2>
                     <table>
                         <tr id="listTitle" class="none">
-                            <th>Danh mục</th>
-                            <th>Tên món</th>
-                            <th>Giá</th>
+                            <th>
+                                Danh mục 
+                                <button id="danhMucAz" type="button" onclick="sortDanhMucAz()">
+                                    <i  class="fa-solid fa-angle-up"></i>
+                                </button>
+                                <button id="danhMucZa" class="none" type="button" onclick="sortDanhMucZa()">
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </button>
+                            </th>
+                            <th>
+                                Tên món
+                                <button id="sanPhamAz" type="button" onclick="sortSanPhamAz()">
+                                    <i  class="fa-solid fa-angle-up"></i>
+                                </button>
+                                <button id="sanPhamZa" class="none" type="button" onclick="sortSanPhamZa()">
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </button>
+                            </th>
+                            <th>
+                                Giá
+                                <button id="giaAz" type="button" onclick="sortGiaAz()">
+                                    <i  class="fa-solid fa-angle-up"></i>
+                                </button>
+                                <button id="giaZa" class="none" type="button" onclick="sortGiaZa()">
+                                    <i class="fa-solid fa-angle-down"></i>
+                                </button>
+
+                            </th>
                             <th><i class="fa-solid fa-gear"></i></th>
                         </tr>
                         <tbody id="listSanPham">

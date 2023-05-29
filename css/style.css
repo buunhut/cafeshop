@@ -131,6 +131,14 @@ h3 {
   border: 1px solid silver;
   text-transform: capitalize;
 }
+.container .main .mainList .listStyle table tr th #danhMucAz, .container .main .mainList .listStyle table tr th #danhMucZa, .container .main .mainList .listStyle table tr th #sanPhamAz, .container .main .mainList .listStyle table tr th #sanPhamZa,
+.container .main .mainList .listStyle table tr th #giaAz, .container .main .mainList .listStyle table tr th #giaZa {
+  background-color: white;
+  padding: 1px 2px;
+  border: none;
+  font-size: 10px;
+  margin-left: 10px;
+}
 .container .main .mainList .listStyle table tr td.number {
   text-align: right;
 }

@@ -93,6 +93,7 @@ function renderGiaoDien() {
       }
     }
     if (dem > 1) {
+      //giao diện kiểu 2
       content += `
     <tr>
       <th colspan="4">${danhMucitem}</th>
@@ -136,11 +137,11 @@ function renderGiaoDien() {
 }
 
 // nút tạo sản phẩm
-function nutTaoSanPham(){
+function nutTaoSanPham() {
   document.getElementById("nutTaoSanPham").classList.add("none");
   document.getElementById("mainForm").classList.remove("none");
   //reset input
-  setAllDone('tbDanhMuc', 'tbTenMon', 'tbGiaMon');
+  setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
   setValueInput("", "", "");
 
   document.getElementById("button").innerHTML = `
@@ -150,11 +151,10 @@ function nutTaoSanPham(){
   </button>
 `;
   document.getElementById("tbKetQua").innerHTML = "";
-
 }
 
 //nút tắt form tạo sản phẩm
-function tatFormTaoSanPham(){
+function tatFormTaoSanPham() {
   document.getElementById("nutTaoSanPham").classList.remove("none");
   document.getElementById("mainForm").classList.add("none");
 }
@@ -202,7 +202,7 @@ function suaSanPham(index) {
   document.getElementById("nutTaoSanPham").classList.add("none");
   // mở form tạo sản phẩm
   document.getElementById("mainForm").classList.remove("none");
-  
+
   // lấy dữ liệu sản phẩm cần sửa
   var danhmuc = listSanPham[index].danhmuc.toLowerCase();
   var ten = listSanPham[index].tenmon.toLowerCase();
@@ -383,13 +383,13 @@ function setAllDone(iddanhmuc, idten, idgiamon) {
 }
 
 // tìm kiếm sản phảm
-function timKiemSanPham(){
+function timKiemSanPham() {
   var tenSanPham = document.getElementById("timKiem").value.toLowerCase();
-  listSanPham.forEach(function(item, index){
-    if(item.tenmon == tenSanPham){
+  listSanPham.forEach(function (item, index) {
+    if (item.tenmon == tenSanPham) {
       console.log("đã tìm thấy");
     }
-  })
+  });
 }
 
 //valid checkRong
@@ -422,4 +422,102 @@ function dinhDangSo(id) {
   return checkInput;
 }
 
-//
+// sort
+
+//sort
+function sortDanhMucAz() {
+  cayDanhMuc.sort();
+  renderGiaoDien();
+  document.getElementById("danhMucAz").classList.add("none");
+  document.getElementById("danhMucZa").classList.remove("none");
+}
+
+function sortDanhMucZa() {
+  cayDanhMuc.sort((a, b) => {
+    var nameA = a.toLowerCase();
+    var nameB = b.toLowerCase();
+    if (nameA > nameB) {
+      return -1;
+    }
+    if (nameA < nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  renderGiaoDien();
+  document.getElementById("danhMucAz").classList.remove("none");
+  document.getElementById("danhMucZa").classList.add("none");
+}
+
+function sortSanPhamAz() {
+  listSanPham.sort((a, b) => {
+    var nameA = a.tenmon.toLowerCase();
+    var nameB = b.tenmon.toLowerCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  renderGiaoDien();
+  document.getElementById("sanPhamAz").classList.add("none");
+  document.getElementById("sanPhamZa").classList.remove("none");
+
+
+
+
+}
+
+function sortSanPhamZa() {
+  listSanPham.sort((a, b) => {
+    var nameA = a.tenmon.toLowerCase();
+    var nameB = b.tenmon.toLowerCase();
+    if (nameA > nameB) {
+      return -1;
+    }
+    if (nameA < nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  renderGiaoDien();
+  document.getElementById("sanPhamAz").classList.remove("none");
+  document.getElementById("sanPhamZa").classList.add("none");  
+}
+
+// sort giá
+function sortGiaAz() {
+  listSanPham.sort((a, b) => {
+    var nameA = a.giamon.toLowerCase();
+    var nameB = b.giamon.toLowerCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  renderGiaoDien();
+  document.getElementById("giaAz").classList.add("none");
+  document.getElementById("giaZa").classList.remove("none");  
+}
+function sortGiaZa() {
+  listSanPham.sort((a, b) => {
+    var nameA = a.giamon.toLowerCase();
+    var nameB = b.giamon.toLowerCase();
+    if (nameA > nameB) {
+      return -1;
+    }
+    if (nameA < nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  renderGiaoDien();
+  document.getElementById("giaAz").classList.remove("none");
+  document.getElementById("giaZa").classList.add("none");  
+}
