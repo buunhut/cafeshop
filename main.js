@@ -135,6 +135,30 @@ function renderGiaoDien() {
   document.getElementById("listSanPham2").innerHTML = content;
 }
 
+// nút tạo sản phẩm
+function nutTaoSanPham(){
+  document.getElementById("nutTaoSanPham").classList.add("none");
+  document.getElementById("mainForm").classList.remove("none");
+  //reset input
+  setAllDone('tbDanhMuc', 'tbTenMon', 'tbGiaMon');
+  setValueInput("", "", "");
+
+  document.getElementById("button").innerHTML = `
+  <button id="themSanPham" onclick="themMon()" type="button">
+    <i class="fa-solid fa-circle-plus"></i>
+    Thêm
+  </button>
+`;
+  document.getElementById("tbKetQua").innerHTML = "";
+
+}
+
+//nút tắt form tạo sản phẩm
+function tatFormTaoSanPham(){
+  document.getElementById("nutTaoSanPham").classList.remove("none");
+  document.getElementById("mainForm").classList.add("none");
+}
+
 // xóa sản phẩm
 function xoaSanPham(index, danhmuc, ten) {
   var xacNhan = confirm("Bạn có chắc muốn xóa?");
@@ -172,11 +196,16 @@ function xoaSanPham(index, danhmuc, ten) {
     "<h3 style='color:purple;'>Đã xóa thành công :)</h3>";
 }
 
-//  sửa sản phẩm
+// nút sửa sản phẩm
 function suaSanPham(index) {
+  // tắt nút tạo sản phẩm
+  document.getElementById("nutTaoSanPham").classList.add("none");
+  // mở form tạo sản phẩm
+  document.getElementById("mainForm").classList.remove("none");
+  
   // lấy dữ liệu sản phẩm cần sửa
-  var danhmuc = listSanPham[index].danhmuc;
-  var ten = listSanPham[index].tenmon;
+  var danhmuc = listSanPham[index].danhmuc.toLowerCase();
+  var ten = listSanPham[index].tenmon.toLowerCase();
   var gia = Number(listSanPham[index].giamon).toLocaleString();
   // gán dữ liệu sản phầm cần sửa vào ô input
   setValueInput(danhmuc, ten, gia);

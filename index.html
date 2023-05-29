@@ -17,13 +17,20 @@
 <body>
     <div class="container">
         <div class="main">
-            <div class="mainForm">
+            <div id="nutTaoSanPham" class="nutTaoSanPham">
+                <button  type="button" onclick="nutTaoSanPham()">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Tạo sản phẩm
+                </button>
+            </div>
+            <div id="mainForm"  class="mainForm none">
                 <form action="">
-                    <h2>Tạo sản phẩm</h2>
-
                     <div class="formInput">
-                        <input type="text" id="ma" placeholder="Mã" hidden>
+                        <h2>Tạo sản phẩm</h2>
+                        <button id="nutTatFormTaoSanPham" type="button" onclick="tatFormTaoSanPham()">X</button>
                     </div>
+                    <div class="formInput">
+                        <input type="text" id="ma" placeholder="Mã" hidden>                    </div>
 
                     <div class="formInput">
                         <i id="tbDanhMuc" class="fa-solid fa-list"></i>
