@@ -1,8 +1,9 @@
 // LỚP OBJECT
-var LopMon = function (_danhmuc, _tenmon, _giamon) {
+var LopMon = function (_danhmuc, _tenmon, _giamon, _nguoidung) {
   this.danhmuc = _danhmuc;
   this.tenmon = _tenmon;
   this.giamon = _giamon;
+  this.nguoidung = _nguoidung;
 };
 
 // THÊM MÓN
@@ -100,7 +101,7 @@ function renderGiaoDien() {
     </tr> 
     <tr>
       <th>Stt</th>
-      <th>Tên món</th>
+      <th>Tên</th>
       <th>Giá</th>
       <th><i class="fa-solid fa-gear"></i></th>
     </tr>
@@ -138,8 +139,12 @@ function renderGiaoDien() {
 
 // nút tạo sản phẩm
 function nutTaoSanPham() {
-  document.getElementById("nutTaoSanPham").classList.add("none");
-  document.getElementById("mainForm").classList.remove("none");
+  // mở thanh menu
+  tatMenu();
+
+  // mở form
+  moForm();
+
   //reset input
   setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
   setValueInput("", "", "");
@@ -154,9 +159,9 @@ function nutTaoSanPham() {
 }
 
 //nút tắt form tạo sản phẩm
-function tatFormTaoSanPham() {
-  document.getElementById("nutTaoSanPham").classList.remove("none");
-  document.getElementById("mainForm").classList.add("none");
+function btTatForm() {
+  moMenu();
+  tatForm();
 }
 
 // xóa sản phẩm
@@ -199,7 +204,7 @@ function xoaSanPham(index, danhmuc, ten) {
 // nút sửa sản phẩm
 function suaSanPham(index) {
   // tắt nút tạo sản phẩm
-  document.getElementById("nutTaoSanPham").classList.add("none");
+  tatMenu();
   // mở form tạo sản phẩm
   document.getElementById("mainForm").classList.remove("none");
 
@@ -234,6 +239,7 @@ function layDuLieuInput() {
   var danhMuc = document.getElementById("danhMuc").value.toLowerCase();
   var tenMon = document.getElementById("tenMon").value.toLowerCase();
   var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
+  var nguoiDung = "admin";
 
   // valid
   valid = true;
@@ -261,7 +267,7 @@ function layDuLieuInput() {
 
     if (cayDanhMuc.length === 0) {
       cayDanhMuc.push(danhMuc);
-      var mon = new LopMon(danhMuc, tenMon, giaMon);
+      var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
       listSanPham.push(mon);
     } else {
       var count = 0;
@@ -273,7 +279,7 @@ function layDuLieuInput() {
           }
         }
       }
-      var mon = new LopMon(danhMuc, tenMon, giaMon);
+      var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
       listSanPham.push(mon);
     }
 
@@ -290,6 +296,7 @@ function layDuLieuChinhSua(index) {
   var danhMuc = document.getElementById("danhMuc").value.toLowerCase();
   var tenMon = document.getElementById("tenMon").value.toLowerCase();
   var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
+  var nguoiDung = "admin";
 
   // valid
   valid = true;
@@ -319,7 +326,7 @@ function layDuLieuChinhSua(index) {
     } else {
       if (cayDanhMuc.length === 0) {
         cayDanhMuc.push(danhMuc);
-        var mon = new LopMon(danhMuc, tenMon, giaMon);
+        var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
         listSanPham[index] = mon;
       } else {
         var count = 0;
@@ -331,7 +338,7 @@ function layDuLieuChinhSua(index) {
             }
           }
         }
-        var mon = new LopMon(danhMuc, tenMon, giaMon);
+        var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
         listSanPham[index] = mon;
         var countSp = 0;
         for (var i = 0; i < listSanPham.length; i++) {
@@ -390,134 +397,4 @@ function timKiemSanPham() {
       console.log("đã tìm thấy");
     }
   });
-}
-
-//valid checkRong
-function checkRong(id, idTb) {
-  var danhMuc = document.getElementById(id).value;
-  if (danhMuc == "") {
-    document.getElementById(idTb).style.color = "red";
-    return false;
-  } else {
-    document.getElementById(idTb).style.color = "purple";
-    return true;
-  }
-}
-
-// onchange định dạng số
-function dinhDangSo(id) {
-  n = document.getElementById(id).value;
-  //chỉ lấy số từ input
-  var chiLaySo = /[0-9]/g;
-  var number = "";
-  var checkInput = n.match(chiLaySo);
-  if (checkInput) {
-    checkInput.forEach(function (item) {
-      number += item;
-      checkInput = number;
-    });
-    checkInput = checkInput.toString();
-  }
-  document.getElementById(id).value = Number(checkInput).toLocaleString();
-  return checkInput;
-}
-
-// sort
-
-//sort
-function sortDanhMucAz() {
-  cayDanhMuc.sort();
-  renderGiaoDien();
-  document.getElementById("danhMucAz").classList.add("none");
-  document.getElementById("danhMucZa").classList.remove("none");
-}
-
-function sortDanhMucZa() {
-  cayDanhMuc.sort((a, b) => {
-    var nameA = a.toLowerCase();
-    var nameB = b.toLowerCase();
-    if (nameA > nameB) {
-      return -1;
-    }
-    if (nameA < nameB) {
-      return 1;
-    }
-    return 0;
-  });
-
-  renderGiaoDien();
-  document.getElementById("danhMucAz").classList.remove("none");
-  document.getElementById("danhMucZa").classList.add("none");
-}
-
-function sortSanPhamAz() {
-  listSanPham.sort((a, b) => {
-    var nameA = a.tenmon.toLowerCase();
-    var nameB = b.tenmon.toLowerCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
-  renderGiaoDien();
-  document.getElementById("sanPhamAz").classList.add("none");
-  document.getElementById("sanPhamZa").classList.remove("none");
-
-
-
-
-}
-
-function sortSanPhamZa() {
-  listSanPham.sort((a, b) => {
-    var nameA = a.tenmon.toLowerCase();
-    var nameB = b.tenmon.toLowerCase();
-    if (nameA > nameB) {
-      return -1;
-    }
-    if (nameA < nameB) {
-      return 1;
-    }
-    return 0;
-  });
-  renderGiaoDien();
-  document.getElementById("sanPhamAz").classList.remove("none");
-  document.getElementById("sanPhamZa").classList.add("none");  
-}
-
-// sort giá
-function sortGiaAz() {
-  listSanPham.sort((a, b) => {
-    var nameA = a.giamon.toLowerCase();
-    var nameB = b.giamon.toLowerCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
-    }
-    return 0;
-  });
-  renderGiaoDien();
-  document.getElementById("giaAz").classList.add("none");
-  document.getElementById("giaZa").classList.remove("none");  
-}
-function sortGiaZa() {
-  listSanPham.sort((a, b) => {
-    var nameA = a.giamon.toLowerCase();
-    var nameB = b.giamon.toLowerCase();
-    if (nameA > nameB) {
-      return -1;
-    }
-    if (nameA < nameB) {
-      return 1;
-    }
-    return 0;
-  });
-  renderGiaoDien();
-  document.getElementById("giaAz").classList.remove("none");
-  document.getElementById("giaZa").classList.add("none");  
 }

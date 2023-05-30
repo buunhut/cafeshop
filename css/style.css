@@ -24,13 +24,40 @@ h3 {
   display: flex;
   justify-content: space-around;
 }
-.container .main .nutTaoSanPham button {
-  padding: 10px 20px;
+.container .main .menu .nutTaoSanPham,
+.container .main .menu .nutBanHang,
+.container .main .menu .nutChotCa,
+.container .main .menu .nutBaoCao {
+  max-width: 300px;
+}
+.container .main .menu .nutTaoSanPham button,
+.container .main .menu .nutBanHang button,
+.container .main .menu .nutChotCa button,
+.container .main .menu .nutBaoCao button {
+  padding: 8px 16px;
   color: white;
   background-color: purple;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+}
+.container .main .menu .nutTaoSanPham button i,
+.container .main .menu .nutBanHang button i,
+.container .main .menu .nutChotCa button i,
+.container .main .menu .nutBaoCao button i {
+  margin-right: 5px;
+  width: 20px;
+}
+.container .main .menu .nutTaoSanPham button a,
+.container .main .menu .nutBanHang button a,
+.container .main .menu .nutChotCa button a,
+.container .main .menu .nutBaoCao button a {
+  text-decoration: none;
+  color: white;
 }
 .container .main .mainForm {
   height: 360px;
@@ -76,7 +103,7 @@ h3 {
   width: 100%;
   padding: 0 10px;
 }
-.container .main .mainForm form .formInput #nutTatFormTaoSanPham {
+.container .main .mainForm form .formInput #nutTatForm {
   background-color: purple;
   border: none;
   text-align: center;
@@ -86,9 +113,11 @@ h3 {
   top: 5px;
   right: 5px;
 }
-.container .main .mainForm form .formInput #nutTatFormTaoSanPham i {
+.container .main .mainForm form .formInput #nutTatForm i {
   color: white;
   margin: 0;
+  font-size: 14px;
+  font-weight: 600;
 }
 .container .main .mainForm form .formButton {
   display: flex;

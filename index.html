@@ -17,26 +17,48 @@
 <body>
     <div class="container">
         <div class="main">
-            <div id="nutTaoSanPham" class="nutTaoSanPham">
-                <button  type="button" onclick="nutTaoSanPham()">
-                    <i class="fa-solid fa-circle-plus"></i>
-                    Tạo sản phẩm
-                </button>
+            <div id="menu" class="menu">
+                <div id="nutTaoSanPham" class="nutTaoSanPham">
+                    <button type="button" onclick="nutTaoSanPham()">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        Tạo sản phẩm
+                    </button>
+                </div>
+                <div id="nutBanHang" class="nutBanHang">
+                    <button type="button">
+                        <i class="fa-solid fa-file"></i>
+                        <a href="./banhang.html">Phiếu bán hàng</a>
+                    </button>
+                </div>
+                <div id="nutChotCa" class="nutChotCa">
+                    <button type="button">
+                        <i class="fa-solid fa-calculator"></i>
+                        <a href="./chotca.html">Chốt ca</a>
+                    </button>
+                </div>
+                <div id="nutBaoCao" class="nutBaoCao">
+                    <button type="button">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <a href="./baocao.html">Báo cáo</a>
+                    </button>
+                </div>
             </div>
-            <div id="mainForm"  class="mainForm none">
+            <div id="mainForm" class="mainForm none">
                 <form action="">
                     <div class="formInput">
                         <h2>Tạo sản phẩm</h2>
-                        <button id="nutTatFormTaoSanPham" type="button" onclick="tatFormTaoSanPham()">
+                        <button id="nutTatForm" type="button" onclick="btTatForm()">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
                     <div class="formInput">
-                        <input type="text" id="ma" placeholder="Mã" hidden>                    </div>
+                        <input type="text" id="ma" placeholder="Mã" hidden>
+                    </div>
 
                     <div class="formInput">
                         <i id="tbDanhMuc" class="fa-solid fa-list"></i>
-                        <input list="danhmuc" id="danhMuc" maxlength="20" placeholder="Danh mục" onblur="checkRong('danhMuc', 'tbDanhMuc')">
+                        <input list="danhmuc" id="danhMuc" maxlength="20" placeholder="Danh mục"
+                            onblur="checkRong('danhMuc', 'tbDanhMuc')">
                         <datalist id="danhmuc">
                             <option value="Đồ uống">
                             <option value="Đồ ăn">
@@ -44,11 +66,13 @@
                     </div>
                     <div class="formInput">
                         <i id="tbTenMon" class="fa-solid fa-mug-hot"></i>
-                        <input type="text" id="tenMon" maxlength="20" placeholder="Tên món" onblur="checkRong('tenMon', 'tbTenMon')">
+                        <input type="text" id="tenMon" maxlength="20" placeholder="Tên sản phẩm"
+                            onblur="checkRong('tenMon', 'tbTenMon')">
                     </div>
                     <div class="formInput">
                         <i id="tbGiaMon" class="fa-solid fa-money-check-dollar"></i>
-                        <input type="text" id="giaMon" maxlength="9" placeholder="Giá" onkeyup="dinhDangSo('giaMon')" onblur="checkRong('giaMon', 'tbGiaMon')">  
+                        <input type="text" id="giaMon" maxlength="9" placeholder="Giá" onkeyup="dinhDangSo('giaMon')"
+                            onblur="checkRong('giaMon', 'tbGiaMon')">
                     </div>
                     <div class="formButton">
                         <div id="button" class="button">
@@ -66,7 +90,8 @@
                     <h2>Quản lý sản phẩm</h2>
                     <div class="formInput timKiem">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="timKiem" maxlength="20" placeholder="Tìm sản phẩm...," onkeyup="timKiemSanPham()">
+                        <input type="text" id="timKiem" maxlength="20" placeholder="Tìm sản phẩm...,"
+                            onkeyup="timKiemSanPham()">
                     </div>
                 </form>
             </div>
@@ -76,18 +101,18 @@
                     <table>
                         <tr id="listTitle" class="none">
                             <th>
-                                Danh mục 
+                                Danh mục
                                 <button id="danhMucAz" type="button" onclick="sortDanhMucAz()">
-                                    <i  class="fa-solid fa-angle-up"></i>
+                                    <i class="fa-solid fa-angle-up"></i>
                                 </button>
                                 <button id="danhMucZa" class="none" type="button" onclick="sortDanhMucZa()">
                                     <i class="fa-solid fa-angle-down"></i>
                                 </button>
                             </th>
                             <th>
-                                Tên món
+                                Tên
                                 <button id="sanPhamAz" type="button" onclick="sortSanPhamAz()">
-                                    <i  class="fa-solid fa-angle-up"></i>
+                                    <i class="fa-solid fa-angle-up"></i>
                                 </button>
                                 <button id="sanPhamZa" class="none" type="button" onclick="sortSanPhamZa()">
                                     <i class="fa-solid fa-angle-down"></i>
@@ -96,7 +121,7 @@
                             <th>
                                 Giá
                                 <button id="giaAz" type="button" onclick="sortGiaAz()">
-                                    <i  class="fa-solid fa-angle-up"></i>
+                                    <i class="fa-solid fa-angle-up"></i>
                                 </button>
                                 <button id="giaZa" class="none" type="button" onclick="sortGiaZa()">
                                     <i class="fa-solid fa-angle-down"></i>
@@ -124,7 +149,8 @@
     </div>
 
     <!-- link js -->
-    <script src="./main.js"></script>
+    <script src="./function/helper.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 
 </html>
