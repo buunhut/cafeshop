@@ -81,6 +81,17 @@ h3 {
   width: 100%;
   padding: 0 10px;
 }
+.container .main .mainForm form .formInput #nutTatFormTaoSanPham {
+  background-color: purple;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.container .main .mainForm form .formInput #nutTatFormTaoSanPham i {
+  color: white;
+  margin: 0;
+}
 .container .main .mainForm form .formButton {
   display: flex;
   align-items: center;
@@ -131,13 +142,19 @@ h3 {
   border: 1px solid silver;
   text-transform: capitalize;
 }
-.container .main .mainList .listStyle table tr th #danhMucAz, .container .main .mainList .listStyle table tr th #danhMucZa, .container .main .mainList .listStyle table tr th #sanPhamAz, .container .main .mainList .listStyle table tr th #sanPhamZa,
-.container .main .mainList .listStyle table tr th #giaAz, .container .main .mainList .listStyle table tr th #giaZa {
-  background-color: white;
+.container .main .mainList .listStyle table tr th #danhMucAz,
+.container .main .mainList .listStyle table tr th #danhMucZa,
+.container .main .mainList .listStyle table tr th #sanPhamAz,
+.container .main .mainList .listStyle table tr th #sanPhamZa,
+.container .main .mainList .listStyle table tr th #giaAz,
+.container .main .mainList .listStyle table tr th #giaZa {
   padding: 1px 2px;
   border: none;
   font-size: 10px;
-  margin-left: 10px;
+  margin-left: 15px;
+  color: white;
+  background-color: purple;
+  cursor: pointer;
 }
 .container .main .mainList .listStyle table tr td.number {
   text-align: right;
@@ -154,7 +171,6 @@ h3 {
 .container .main .mainList .listStyle table tr td button {
   width: 20px;
   height: 20px;
-  background-color: none;
   border: none;
   color: purple;
   cursor: pointer;
