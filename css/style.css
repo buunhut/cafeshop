@@ -40,11 +40,6 @@ h3 {
   border-radius: 10px;
   position: relative;
 }
-.container .main .mainForm .nutTat {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-}
 .container .main .mainForm form {
   width: 380px;
 }
@@ -85,8 +80,11 @@ h3 {
   background-color: purple;
   border: none;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 100%;
   cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 .container .main .mainForm form .formInput #nutTatFormTaoSanPham i {
   color: white;
@@ -174,6 +172,9 @@ h3 {
   border: none;
   color: purple;
   cursor: pointer;
+}
+.container .main #listKieu2 table tbody tr td {
+  border: none;
 }
 .container .main #listKieu2 table tbody tr:nth-child(even) {
   background-color: rgb(255, 245, 250);

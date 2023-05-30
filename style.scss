@@ -41,11 +41,6 @@ $primaryTextColor: white;
       background-color: $secondaryColor;
       border-radius: 10px;
       position: relative;
-      .nutTat {
-        position: absolute;
-        top: 2px;
-        right: 2px;
-      }
       form {
         width: 380px;
         hr {
@@ -80,16 +75,20 @@ $primaryTextColor: white;
             width: 100%;
             padding: 0 10px;
           }
-          #nutTatFormTaoSanPham{
-              background-color: $primaryColor;
-              border: none;
-              text-align: center;
-              border-radius: 5px;
-              cursor: pointer;
-              i{
+          #nutTatFormTaoSanPham {
+            background-color: $primaryColor;
+            border: none;
+            text-align: center;
+            border-radius: 100%;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            // width: 100%;
+            i {
               color: $primaryTextColor;
               margin: 0;
-              }
+            }
           }
         }
         .formButton {
@@ -157,7 +156,6 @@ $primaryTextColor: white;
               color: $primaryTextColor;
               background-color: $primaryColor;
               cursor: pointer;
-
             }
           }
           tr td.number {
@@ -187,8 +185,13 @@ $primaryTextColor: white;
     #listKieu2 {
       table {
         tbody {
-          tr:nth-child(even) {
-            background-color: rgb(255, 245, 250);
+          tr {
+            td {
+              border: none;
+            }
+            &:nth-child(even) {
+              background-color: rgb(255, 245, 250);
+            }
           }
         }
       }
