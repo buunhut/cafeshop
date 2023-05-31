@@ -41,11 +41,11 @@ function renderGiaoDien() {
   if (listSanPham.length < 1) {
     document.getElementById("listTitle").classList.add("none");
     document.getElementById("listKieu1").classList.add("none");
-    document.getElementById("listKieu2").classList.add("none");
+    // document.getElementById("listKieu2").classList.add("none");
   } else {
     document.getElementById("listTitle").classList.remove("none");
     document.getElementById("listKieu1").classList.remove("none");
-    document.getElementById("listKieu2").classList.remove("none");
+    // document.getElementById("listKieu2").classList.remove("none");
   }
 
   var content = "";
@@ -134,34 +134,7 @@ function renderGiaoDien() {
     </tbody>
     `;
   });
-  document.getElementById("listSanPham2").innerHTML = content;
-}
-
-// nút tạo sản phẩm
-function nutTaoSanPham() {
-  // mở thanh menu
-  tatMenu();
-
-  // mở form
-  moForm();
-
-  //reset input
-  setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
-  setValueInput("", "", "");
-
-  document.getElementById("button").innerHTML = `
-  <button id="themSanPham" onclick="themMon()" type="button">
-    <i class="fa-solid fa-circle-plus"></i>
-    Thêm
-  </button>
-`;
-  document.getElementById("tbKetQua").innerHTML = "";
-}
-
-//nút tắt form tạo sản phẩm
-function btTatForm() {
-  moMenu();
-  tatForm();
+  // document.getElementById("listSanPham2").innerHTML = content;
 }
 
 // xóa sản phẩm
@@ -391,10 +364,24 @@ function setAllDone(iddanhmuc, idten, idgiamon) {
 
 // tìm kiếm sản phảm
 function timKiemSanPham() {
-  var tenSanPham = document.getElementById("timKiem").value.toLowerCase();
-  listSanPham.forEach(function (item, index) {
-    if (item.tenmon == tenSanPham) {
-      console.log("đã tìm thấy");
+  var tenCanTim = document.getElementById("timKiem").value.toLowerCase();
+  listSanPham.filter(function (item) {
+    item.tenmon.includes(tenCanTim);
+    var sanPhamTimDuoc = [];
+    if (item.tenmon.includes(tenCanTim)) {
+      sanPhamTimDuoc.push(item);
+      console.log(sanPhamTimDuoc);
+      //redder giao diện
+      var content = "";
+      sanPhamTimDuoc.forEach(function (sanPham) {
+        content += `
+        <h3>Coding, wait please,</h3>
+      `;
+      });
+    } else {
+      return;
     }
+
+    document.getElementById("ketQuaTimKiem").innerHTML = content;
   });
 }

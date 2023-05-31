@@ -27,6 +27,42 @@ function tatForm() {
   document.getElementById("mainForm").classList.add("none");
 }
 
+// nút tạo sản phẩm
+function nutTaoSanPham() {
+  // mở thanh menu
+  tatMenu();
+
+  // mở form
+  moForm();
+
+  //reset input
+  setAllDone("tbDanhMuc", "tbTenMon", "tbGiaMon");
+  setValueInput("", "", "");
+
+  document.getElementById("button").innerHTML = `
+  <button id="themSanPham" onclick="themMon()" type="button">
+    <i class="fa-solid fa-circle-plus"></i>
+    Thêm
+  </button>
+`;
+  document.getElementById("tbKetQua").innerHTML = "";
+}
+
+//nút tắt form tạo sản phẩm
+function btTatForm() {
+  moMenu();
+  tatForm();
+}
+
+//Function DOM
+function domString(id){
+  return document.getElementById(id).value;    
+}
+function domNumber(id){
+  return Number(document.getElementById(id).value.replaceAll(/[.,]/g, ""));    
+}
+
+
 // chức năng valid
 // kiểm tra rỗng
 function checkRong(id, idTb) {
