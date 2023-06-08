@@ -10,6 +10,13 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="./css/style.css">
     <title>Cafe</title>
 </head>
@@ -17,112 +24,92 @@
 <body>
     <div class="container">
         <div class="main">
-            <div id="menu" class="menu none">
-                <div id="nutTaoSanPham" class="nutTaoSanPham none">
-                    <button type="button">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <a href="./index.html">Tạo sản phẩm</a>
-                    </button>
-                </div>
-                <div id="nutBanHang" class="nutBanHang none">
-                    <button type="button" onclick="nutBanHang()">
-                        <i class="fa-solid fa-file"></i>
-                        <a href="./banhang.html">Phiếu bán hàng</a>
-                    </button>
-                </div>
-                <div id="nutChotCa" class="nutChotCa none">
-                    <button type="button">
-                        <i class="fa-solid fa-calculator"></i>
-                        <a href="./chotca.html">Chốt ca</a>
-                    </button>
-                </div>
-                <div id="nutBaoCao" class="nutBaoCao none">
-                    <button type="button">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <a href="./baocao.html">Báo cáo</a>
-                    </button>
-                </div>
-            </div>
-            <div id="mainForm" class="mainForm">
-                <form id="formBanHang" action="">
-                    <div class="formInput">
-                        <h2>Tạo sản phẩm</h2>
-                        <button id="nutTatForm" type="button" onclick="btTatForm()">
-                            <i class="fa-solid fa-xmark"></i>
+            <div class="tools">
+                <div id="menu" class="menu">
+                    <div id="nutTatMoForm" class="nutTatMoForm">
+                        <button type="button" onclick="nutTatMoForm()">
+                            <i class="fa-solid fa-circle-plus"></i>
+                            <span>Tạo sản phẩm</span>
                         </button>
                     </div>
-                    <div class="formInput">
-                        <input type="text" id="ma" placeholder="Mã" hidden>
+                    <div id="nutBanHang" class="nutBanHang">
+                        <button type="button" onclick="nutBanHang()">
+                            <i class="fa-solid fa-file"></i>
+                            <span><a href="./banhang.html">Phiếu bán hàng</a></span>
+                        </button>
                     </div>
-
-                    <div class="formInput">
-                        <i id="tbDanhMuc" class="fa-solid fa-list"></i>
-                        <input list="danhmuc" id="danhMuc" maxlength="20" placeholder="Danh mục"
-                            onblur="checkRong('danhMuc', 'tbDanhMuc')">
-                        <datalist id="danhmuc">
-                            <option value="Đồ uống">
-                            <option value="Đồ ăn">
-                        </datalist>
+                    <div id="nutChotCa" class="nutChotCa">
+                        <button type="button">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span><a href="./chotca.html">Chốt ca</a></span>
+                        </button>
                     </div>
-                    <div class="formInput">
-                        <i id="tbTenMon" class="fa-solid fa-mug-hot"></i>
-                        <input type="text" id="tenMon" maxlength="20" placeholder="Tên sản phẩm"
-                            onblur="checkRong('tenMon', 'tbTenMon')">
+                    <div id="nutBaoCao" class="nutBaoCao">
+                        <button type="button">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span><a href="./baocao.html">Báo cáo</a></span>
+                        </button>
                     </div>
-                    <div class="formInput">
-                        <i id="tbGiaMon" class="fa-solid fa-money-check-dollar"></i>
-                        <input type="text" id="giaMon" maxlength="9" placeholder="Giá" onkeyup="dinhDangSo('giaMon')"
-                            onblur="checkRong('giaMon', 'tbGiaMon')">
-                    </div>
-                    <div class="formButton">
-                        <div id="button" class="button">
-                            <button id="themSanPham" onclick="themMon()" type="button">
-                                <i class="fa-solid fa-circle-plus"></i>
-                                Thêm
+                </div>
+                <div id="mainForm" class="mainForm height360">
+                    <form id="formTaoSanPham" action="">
+                        <div class="formInput">
+                            <h2>Tạo sản phẩm</h2>
+                            <button id="nutTatForm" type="button" onclick="nutTatMoForm()">
+                                <i class="fa-solid fa-xmark"></i>
                             </button>
                         </div>
-
-                        <div id="tbKetQua" class="tbKetQua">
-
+                        <div class="formInput">
+                            <input type="text" id="ma" placeholder="Mã" hidden>
                         </div>
-                    </div>
-                    <hr>
-                    <h2>Quản lý sản phẩm</h2>
-                    <div class="formInput timKiem">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="timKiem" maxlength="20" placeholder="Tìm sản phẩm...,"
-                            onkeyup="timKiemSanPham()">
-                    </div>
-                    <div class="ketQuaTimKiem none">
-                        <table>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Giá</th>
-                                <th><i class="fa-solid fa-gear"></i></th>
 
-                            </tr>
-                            <tbody id="ketQuaTimKiem">
-                                <tr>
-                                    <td class="name"></td>
-                                    <td class="number"></td>
-                                    <td class="thaoTac"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="formInput">
+                            <i id="tbDanhMuc" class="fa-solid fa-list"></i>
+                            <input list="danhmuc" id="danhMuc" maxlength="20" placeholder="Danh mục"
+                                onblur="checkRong('danhMuc', 'tbDanhMuc')" onfocus="clickInput()">
+                            <datalist id="danhmuc">
+                                <option value="Đồ uống">
+                                <option value="Đồ ăn">
+                            </datalist>
+                        </div>
+                        <div class="formInput">
+                            <i id="tbTenMon" class="fa-solid fa-mug-hot"></i>
+                            <input type="text" id="tenMon" maxlength="20" placeholder="Tên sản phẩm"
+                                onblur="checkRong('tenMon', 'tbTenMon')" onfocus="clickInput()">
+                        </div>
+                        <div class="formInput">
+                            <i id="tbGiaMon" class="fa-solid fa-money-check-dollar"></i>
+                            <input type="text" id="giaMon" maxlength="9" placeholder="Giá"
+                                onkeyup="dinhDangSo('giaMon')" onblur="checkRong('giaMon', 'tbGiaMon')" onfocus="clickInput()">
+                        </div>
+                        <div class="formButton">
+                            <div id="button" class="button">
+                                <button id="themSanPham" onclick="themMon()" type="button">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                    Thêm
+                                </button>
+                            </div>
 
-                    </div>
+                            <div id="tbKetQua" class="tbKetQua">
 
-
-
-
-                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <h2>Tìm kiếm sản phẩm</h2>
+                        <div class="formInput timKiem">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="timKiem" maxlength="20" placeholder="Nhập tên sản phẩm...,"
+                                onkeyup="timKiemSanPham()">
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mainList chiTietBanHang">
-                <div id="listKieu1">
+            <div id="mainList" class="mainList chiTietBanHang">
+                <div id="listData">
                     <div class="listStyle">
                         <h2>Danh sách sản phẩm</h2>
                         <table>
-                            <tr id="listTitle" class="none">
+                            <tr id="listTitle">
                                 <th>
                                     Danh mục
                                     <button id="danhMucAz" type="button" onclick="sortDanhMucAz()">
@@ -158,131 +145,8 @@
                         </table>
                     </div>
                 </div>
-                <!-- <div id="listKieu2" class="mainList none">
-                    <div class="listStyle">
-                        <h2>Danh sách sản phẩm kiểu 2</h2>
-                        <table id="listSanPham2">
-                        </table>
-                    </div>
-                </div> -->
             </div>
-
-
-
         </div>
-
-
-
-
-        <!-- <div class="main"> -->
-        <!-- <div id="menu" class="menu none">
-                <div id="nutTaoSanPham" class="nutTaoSanPham none">
-                    <button type="button" onclick="nutTaoSanPham()">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        Tạo sản phẩm
-                    </button>
-                </div>
-                <div id="nutBanHang" class="nutBanHang none">
-                    <button type="button">
-                        <i class="fa-solid fa-file"></i>
-                        <a href="./banhang.html">Phiếu bán hàng</a>
-                    </button>
-                </div>
-                <div id="nutChotCa" class="nutChotCa none">
-                    <button type="button">
-                        <i class="fa-solid fa-calculator"></i>
-                        <a href="./chotca.html">Chốt ca</a>
-                    </button>
-                </div>
-                <div id="nutBaoCao" class="nutBaoCao none">
-                    <button type="button">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <a href="./baocao.html">Báo cáo</a>
-                    </button>
-                </div>
-            </div> -->
-        <!-- <div id="mainForm" class="mainForm">
-                <form action="">
-                    <div class="formInput">
-                        <h2>Tạo sản phẩm</h2>
-                        <button id="nutTatForm" type="button" onclick="btTatForm()">
-                            <i class="fa-solid fa-xmark"></i>
-                        </button>
-                    </div>
-                    <div class="formInput">
-                        <input type="text" id="ma" placeholder="Mã" hidden>
-                    </div>
-
-                    <div class="formInput">
-                        <i id="tbDanhMuc" class="fa-solid fa-list"></i>
-                        <input list="danhmuc" id="danhMuc" maxlength="20" placeholder="Danh mục"
-                            onblur="checkRong('danhMuc', 'tbDanhMuc')">
-                        <datalist id="danhmuc">
-                            <option value="Đồ uống">
-                            <option value="Đồ ăn">
-                        </datalist>
-                    </div>
-                    <div class="formInput">
-                        <i id="tbTenMon" class="fa-solid fa-mug-hot"></i>
-                        <input type="text" id="tenMon" maxlength="20" placeholder="Tên sản phẩm"
-                            onblur="checkRong('tenMon', 'tbTenMon')">
-                    </div>
-                    <div class="formInput">
-                        <i id="tbGiaMon" class="fa-solid fa-money-check-dollar"></i>
-                        <input type="text" id="giaMon" maxlength="9" placeholder="Giá" onkeyup="dinhDangSo('giaMon')"
-                            onblur="checkRong('giaMon', 'tbGiaMon')">
-                    </div>
-                    <div class="formButton">
-                        <div id="button" class="button">
-                            <button id="themSanPham" onclick="themMon()" type="button">
-                                <i class="fa-solid fa-circle-plus"></i>
-                                Thêm
-                            </button>
-                        </div>
-
-                        <div id="tbKetQua" class="tbKetQua">
-
-                        </div>
-                    </div>
-                    <hr>
-                    <h2>Quản lý sản phẩm</h2>
-                    <div class="formInput timKiem">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" id="timKiem" maxlength="20" placeholder="Tìm sản phẩm...,"
-                                onkeyup="timKiemSanPham()">
-                    </div>
-                    <div class="ketQuaTimKiem none">
-                        <table>
-                            <tr>
-                                <th>Tên</th>
-                                <th>Giá</th>
-                                <th><i class="fa-solid fa-gear"></i></th>
-                                
-                            </tr>
-                            <tbody id="ketQuaTimKiem">
-                                <tr>
-                                    <td class="name"></td>
-                                    <td class="number"></td>
-                                    <td class="thaoTac"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                    </div>
-
-                </form>
-            </div> -->
-
-        <!-- <div id="listKieu2" class="mainList">
-                <div class="listStyle">
-                    <h2>Danh sách sản phẩm kiểu 2</h2>
-                    <table id="listSanPham2">
-                    </table>
-                </div>
-            </div> -->
-
-
-        <!-- </div> -->
     </div>
 
     <!-- link js -->

@@ -1,5 +1,5 @@
 // LỚP OBJECT
-var LopMon = function (_danhmuc, _tenmon, _giamon, _nguoidung) {
+let LopMon = function (_danhmuc, _tenmon, _giamon, _nguoidung) {
   this.danhmuc = _danhmuc;
   this.tenmon = _tenmon;
   this.giamon = _giamon;
@@ -7,16 +7,16 @@ var LopMon = function (_danhmuc, _tenmon, _giamon, _nguoidung) {
 };
 
 // THÊM MÓN
-var cayDanhMuc = [];
+let cayDanhMuc = [];
 // lấy dữ liệu từ local
-var cayDanhMucLocal = JSON.parse(localStorage.getItem("caydanhmuc"));
+let cayDanhMucLocal = JSON.parse(localStorage.getItem("caydanhmuc"));
 if (cayDanhMucLocal != null) {
   cayDanhMuc = cayDanhMucLocal;
 }
 
-var listSanPham = [];
+let listSanPham = [];
 // lấy dữ liệu từ local
-var listSanPhamLocal = JSON.parse(localStorage.getItem("listsanpham"));
+let listSanPhamLocal = JSON.parse(localStorage.getItem("listsanpham"));
 if (listSanPhamLocal != null) {
   listSanPham = listSanPhamLocal;
 }
@@ -39,20 +39,16 @@ function themMon() {
 function renderGiaoDien() {
   // hiển thị ra giao hiện
   if (listSanPham.length < 1) {
-    document.getElementById("listTitle").classList.add("none");
-    document.getElementById("listKieu1").classList.add("none");
-    // document.getElementById("listKieu2").classList.add("none");
+    document.getElementById("mainList").classList.add("none");
   } else {
-    document.getElementById("listTitle").classList.remove("none");
-    document.getElementById("listKieu1").classList.remove("none");
-    // document.getElementById("listKieu2").classList.remove("none");
+    document.getElementById("mainList").classList.remove("none");
   }
 
-  var content = "";
+  let content = "";
   cayDanhMuc.forEach(function (danhMucitem) {
     // lấy đc danh mục ra rồi
-    var dem = 1;
-    for (var n = 0; n < listSanPham.length; n++) {
+    let dem = 1;
+    for (let n = 0; n < listSanPham.length; n++) {
       if (danhMucitem == listSanPham[n].danhmuc) {
         dem++;
       }
@@ -73,9 +69,7 @@ function renderGiaoDien() {
             <td class="number">${Number(monItem.giamon).toLocaleString()}</td>
             <td>
               <button onclick="suaSanPham('${index}')"><i class="fa-regular fa-pen-to-square"></i></button>
-              <button onclick="xoaSanPham('${index}', '${
-          monItem.danhmuc
-        }')"><i class="fa-solid fa-trash-can"></i></button>
+              <button onclick="xoaSanPham('${index}', '${monItem.danhmuc}', '${monItem.tenmon}')"><i class="fa-solid fa-trash-can"></i></button>
             </td>
           </tr>            
         `;
@@ -84,74 +78,23 @@ function renderGiaoDien() {
   });
   document.getElementById("listSanPham").innerHTML = content;
 
-  // hiển thị ra giao hiện kiều 2
-  var content = "";
-  cayDanhMuc.forEach(function (danhMucitem) {
-    var dem = 1;
-    for (var n = 0; n < listSanPham.length; n++) {
-      if (danhMucitem == listSanPham[n].danhmuc) {
-        dem++;
-      }
-    }
-    if (dem > 1) {
-      //giao diện kiểu 2
-      content += `
-    <tr>
-      <th colspan="4">${danhMucitem}</th>
-    </tr> 
-    <tr>
-      <th>Stt</th>
-      <th>Tên</th>
-      <th>Giá</th>
-      <th><i class="fa-solid fa-gear"></i></th>
-    </tr>
-    <tbody id="listSanPham2">
-
-  `;
-    }
-
-    var stt = 1;
-    listSanPham.forEach(function (monItem, index) {
-      // tìm được vị trí món cần lấy
-      if (monItem.danhmuc == danhMucitem) {
-        content += `
-            <tr>
-              <td class="number">${stt++}</td>
-              <td>${monItem.tenmon}</td>
-              <td class="number">${Number(monItem.giamon).toLocaleString()}</td>
-              <td>
-                <button onclick="suaSanPham('${index}')"><i class="fa-regular fa-pen-to-square"></i></button>
-                <button onclick="xoaSanPham('${index}', '${
-          monItem.danhmuc
-        }')"><i class="fa-solid fa-trash-can"></i></button>
-              </td>
-            </tr>            
-          `;
-      }
-    });
-
-    `
-    </tbody>
-    `;
-  });
-  // document.getElementById("listSanPham2").innerHTML = content;
 }
 
 // xóa sản phẩm
 function xoaSanPham(index, danhmuc, ten) {
-  var xacNhan = confirm("Bạn có chắc muốn xóa?");
+  let xacNhan = confirm("Bạn có chắc muốn xóa " + vietHoaKyTuDau(ten) + " ?");
   if (xacNhan == true) {
     listSanPham.splice(index, 1);
 
     // tìm vị trí danh mục
-    var viTri = -1;
+    let viTri = -1;
     cayDanhMuc.forEach(function (item, index) {
       if (item == danhmuc) {
         viTri = index;
       }
     });
 
-    var count = 0;
+    let count = 0;
     listSanPham.forEach(function (item) {
       if (item.danhmuc == danhmuc) {
         count++;
@@ -177,16 +120,16 @@ function xoaSanPham(index, danhmuc, ten) {
 // nút sửa sản phẩm
 function suaSanPham(index) {
   // tắt nút tạo sản phẩm
-  tatMenu();
+  // tatMenu();
   // mở form tạo sản phẩm
   document.getElementById("mainForm").classList.remove("none");
 
   // lấy dữ liệu sản phẩm cần sửa
-  var danhmuc = listSanPham[index].danhmuc.toLowerCase();
-  var ten = listSanPham[index].tenmon.toLowerCase();
-  var gia = Number(listSanPham[index].giamon).toLocaleString();
+  let danhmuc = listSanPham[index].danhmuc.toLowerCase();
+  let ten = listSanPham[index].tenmon.toLowerCase();
+  let gia = Number(listSanPham[index].giamon).toLocaleString();
   // gán dữ liệu sản phầm cần sửa vào ô input
-  setValueInput(danhmuc, ten, gia);
+  setValueInput(danhmuc, ten, gia, "");
   //đóng nút thêm
   document.getElementById("button").innerHTML = `
   <button id="suaSanPham" onclick="capNhatMon('${index}')" type="button">
@@ -201,7 +144,6 @@ function suaSanPham(index) {
 
 // cập nhật sản phẩm
 function capNhatMon(index) {
-  // var viTri = index;
   // lấy dữ liệu input
   layDuLieuChinhSua(index);
 }
@@ -209,10 +151,10 @@ function capNhatMon(index) {
 // lấy dữ liệu
 function layDuLieuInput() {
   //lấy dữ liệu input
-  var danhMuc = document.getElementById("danhMuc").value.toLowerCase();
-  var tenMon = document.getElementById("tenMon").value.toLowerCase();
-  var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
-  var nguoiDung = "admin";
+  let danhMuc = document.getElementById("danhMuc").value.toLowerCase();
+  let tenMon = document.getElementById("tenMon").value.toLowerCase();
+  let giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
+  let nguoiDung = "admin";
 
   // valid
   valid = true;
@@ -229,7 +171,7 @@ function layDuLieuInput() {
     document.getElementById("tbKetQua").innerHTML = "";
 
     // ktra xem sản phẩm có chưa, nếu có thì ko tạo nữa
-    for (var i = 0; i < listSanPham.length; i++) {
+    for (let i = 0; i < listSanPham.length; i++) {
       if (tenMon == listSanPham[i].tenmon) {
         document.getElementById("tbTenMon").style.color = "red";
         document.getElementById("tbKetQua").innerHTML =
@@ -240,11 +182,11 @@ function layDuLieuInput() {
 
     if (cayDanhMuc.length === 0) {
       cayDanhMuc.push(danhMuc);
-      var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
+      let mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
       listSanPham.push(mon);
     } else {
-      var count = 0;
-      for (var i = 0; i < cayDanhMuc.length; i++) {
+      let count = 0;
+      for (let i = 0; i < cayDanhMuc.length; i++) {
         if (danhMuc != cayDanhMuc[i]) {
           count++;
           if (count == cayDanhMuc.length) {
@@ -252,24 +194,24 @@ function layDuLieuInput() {
           }
         }
       }
-      var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
+      let mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
       listSanPham.push(mon);
     }
 
     document.getElementById("tbKetQua").innerHTML =
       "<h3 style='color:purple'>Đã tạo thành công :) </h3>";
 
-    setValueInput("", "", "");
+    setValueInput("", "", "", "");
   }
 }
 
 //lấy dữ liệu lúc chỉnh sửa
 function layDuLieuChinhSua(index) {
   //lấy dữ liệu input
-  var danhMuc = document.getElementById("danhMuc").value.toLowerCase();
-  var tenMon = document.getElementById("tenMon").value.toLowerCase();
-  var giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
-  var nguoiDung = "admin";
+  let danhMuc = document.getElementById("danhMuc").value.toLowerCase();
+  let tenMon = document.getElementById("tenMon").value.toLowerCase();
+  let giaMon = document.getElementById("giaMon").value.replaceAll(/[.,]/g, "");
+  let nguoiDung = "admin";
 
   // valid
   valid = true;
@@ -286,7 +228,7 @@ function layDuLieuChinhSua(index) {
     document.getElementById("tbKetQua").innerHTML = "";
 
     // ktra xem sản phẩm có chưa, đếm sản phẩm đã có
-    var countSp = 0;
+    let countSp = 0;
     listSanPham.forEach(function (item, index) {
       if (item.tenmon == tenMon) {
         countSp++;
@@ -299,11 +241,11 @@ function layDuLieuChinhSua(index) {
     } else {
       if (cayDanhMuc.length === 0) {
         cayDanhMuc.push(danhMuc);
-        var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
+        let mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
         listSanPham[index] = mon;
       } else {
-        var count = 0;
-        for (var i = 0; i < cayDanhMuc.length; i++) {
+        let count = 0;
+        for (let i = 0; i < cayDanhMuc.length; i++) {
           if (danhMuc != cayDanhMuc[i]) {
             count++;
             if (count == cayDanhMuc.length) {
@@ -311,10 +253,10 @@ function layDuLieuChinhSua(index) {
             }
           }
         }
-        var mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
+        let mon = new LopMon(danhMuc, tenMon, giaMon, nguoiDung);
         listSanPham[index] = mon;
-        var countSp = 0;
-        for (var i = 0; i < listSanPham.length; i++) {
+        let countSp = 0;
+        for (let i = 0; i < listSanPham.length; i++) {
           if (listSanPham[i].tenmon == tenMon) {
             countSp++;
           }
@@ -335,7 +277,7 @@ function layDuLieuChinhSua(index) {
 
           //render
           renderGiaoDien();
-          setValueInput("", "", "");
+          setValueInput("", "", "", "");
           document.getElementById("button").innerHTML = `
             <button id="themSanPham" onclick="themMon()" type="button">
               <i class="fa-solid fa-circle-plus"></i>
@@ -349,39 +291,68 @@ function layDuLieuChinhSua(index) {
 }
 
 // reset input
-function setValueInput(danhmuc, ten, gia) {
+function setValueInput(danhmuc, ten, gia, tim) {
   document.getElementById("danhMuc").value = danhmuc;
   document.getElementById("tenMon").value = ten;
   document.getElementById("giaMon").value = gia;
+  document.getElementById("timKiem").value = tim;
 }
 
-//set icon purple + thông báo ""
-function setAllDone(iddanhmuc, idten, idgiamon) {
-  document.getElementById(iddanhmuc).style.color = "purple";
-  document.getElementById(idten).style.color = "purple";
-  document.getElementById(idgiamon).style.color = "purple";
-}
 
 // tìm kiếm sản phảm
 function timKiemSanPham() {
-  var tenCanTim = document.getElementById("timKiem").value.toLowerCase();
-  listSanPham.filter(function (item) {
-    item.tenmon.includes(tenCanTim);
-    var sanPhamTimDuoc = [];
-    if (item.tenmon.includes(tenCanTim)) {
-      sanPhamTimDuoc.push(item);
-      console.log(sanPhamTimDuoc);
-      //redder giao diện
-      var content = "";
-      sanPhamTimDuoc.forEach(function (sanPham) {
-        content += `
-        <h3>Coding, wait please,</h3>
-      `;
-      });
-    } else {
-      return;
-    }
-
-    document.getElementById("ketQuaTimKiem").innerHTML = content;
+  let str = document.getElementById("timKiem").value.toLowerCase();
+  let tenCanTim = boDauTiengViet(str);
+  let dataTimDuoc = listSanPham.filter(function (item) {
+    return boDauTiengViet(item.tenmon).includes(tenCanTim);
   });
+  // console.log(dataTimDuoc);
+
+  if (dataTimDuoc.length < 1) {
+    // document.getElementById("mainList").classList.add("none");
+    // document.getElementById("listKieu1").classList.add("none");
+    // document.getElementById("listKieu2").classList.add("none");
+    document.getElementById("listSanPham").innerHTML = "";
+  } else {
+    document.getElementById("mainList").classList.remove("none");
+    // document.getElementById("listKieu1").classList.remove("none");
+    // document.getElementById("listKieu2").classList.remove("none");
+  }
+
+  let content = "";
+  cayDanhMuc.forEach(function (danhMucitem) {
+    // lấy đc danh mục ra rồi
+    let dem = 1;
+    for (let n = 0; n < dataTimDuoc.length; n++) {
+      if (danhMucitem == dataTimDuoc[n].danhmuc) {
+        dem++;
+      }
+    }
+    if (dem > 1) {
+      content += `
+      <tr>
+        <td rowspan="${dem}">${danhMucitem}</td>
+      </tr> 
+    `;
+    }
+    dataTimDuoc.forEach(function (monItem, index) {
+      // tìm được vị trí món cần lấy
+      if (danhMucitem == monItem.danhmuc) {
+        content += `
+          <tr>
+            <td>${monItem.tenmon}</td>
+            <td class="number">${Number(monItem.giamon).toLocaleString()}</td>
+            <td>
+              <button onclick="suaSanPham('${index}')"><i class="fa-regular fa-pen-to-square"></i></button>
+              <button onclick="xoaSanPham('${index}', '${
+          monItem.danhmuc
+        }')"><i class="fa-solid fa-trash-can"></i></button>
+            </td>
+          </tr>            
+        `;
+      }
+    });
+  });
+  document.getElementById("listSanPham").innerHTML = content;
 }
+

@@ -10,6 +10,14 @@
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+
     <link rel="stylesheet" href="./css/style.css">
     <title>Cafe</title>
 </head>
@@ -17,150 +25,107 @@
 <body>
     <div class="container">
         <div class="main">
-            <div id="menu" class="menu none">
-                <div id="nutTaoSanPham" class="nutTaoSanPham none">
-                    <button type="button">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        <a href="./index.html">Tạo sản phẩm</a>
-                    </button>
-                </div>
-                <div id="nutBanHang" class="nutBanHang none">
-                    <button type="button" onclick="nutBanHang()">
-                        <i class="fa-solid fa-file"></i>
-                        <a href="./banhang.html">Phiếu bán hàng</a>
-                    </button>
-                </div>
-                <div id="nutChotCa" class="nutChotCa none">
-                    <button type="button">
-                        <i class="fa-solid fa-calculator"></i>
-                        <a href="./chotca.html">Chốt ca</a>
-                    </button>
-                </div>
-                <div id="nutBaoCao" class="nutBaoCao none">
-                    <button type="button">
-                        <i class="fa-solid fa-chart-line"></i>
-                        <a href="./baocao.html">Báo cáo</a>
-                    </button>
-                </div>
-            </div>
-            <div id="mainForm" class="mainForm">
-                <form id="formBanHang" action="">
-                    <div class="formInput">
-                        <h2>Phiếu bán hàng</h2>
-                        <button id="nutTatForm" type="button" onclick="btTatForm()">
-                            <i class="fa-solid fa-xmark"></i>
+            <div class="tools">
+
+                <div id="menu" class="menu">
+                    <div id="nutTatMoForm" class="nutTatMoForm">
+                        <button type="button">
+                            <i class="fa-solid fa-circle-plus"></i>
+                            <span><a href="./index.html">Tạo sản phẩm</a></span>
                         </button>
                     </div>
-                    <div class="formInput">
-                        <input type="text" id="ma" placeholder="Mã" hidden>
+                    <div id="nutBanHang" class="nutBanHang">
+                        <button type="button" onclick="nutTatMoForm()">
+                            <i class="fa-solid fa-file"></i>
+                            <span>Phiếu bán hàng</span>
+                        </button>
                     </div>
-                    <div class="formInput">
-                        <i id="tbNgay" class="fa-solid fa-calendar-days"></i>
-                        <input type="date" id="ngayThangNam" onblur="checkRong('ngay', 'tbNgay')">
+                    <div id="nutChotCa" class="nutChotCa">
+                        <button type="button">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span><a href="./chotca.html">Chốt ca</a></span>
+                        </button>
                     </div>
-                    <div class="formInput">
-                        <i id="tbSoPhieu" class="fa-solid fa-hashtag"></i>
-                        <input type="text" id="soPhieu" maxlength="20" placeholder="Số phiếu"
-                            onblur="checkRong('soPhieu', 'tbSoPhieu')">
-                    </div>
-
-                    <div class="formInput">
-                        <i id="tbkhachHang" class="fa-solid fa-user-tie"></i>
-                        <input list="khachhang" id="khachHang" maxlength="20" placeholder="Khách hàng"
-                            onblur="checkRong('khachHang', 'tbkhachHang')">
-                        <datalist id="khachhang">
-                            <option value="Khách 1">
-                            <option value="Khách 2">
-                        </datalist>
-                    </div>
-                    <div class="formInput">
-                        <i id="tbSanPham" class="fa-solid fa-mug-hot"></i>
-                        <input list="sanpham" id="sanPham" maxlength="20" placeholder="Tên sản phẩm"
-                            onblur="checkRong('sanPham', 'tbSanPham')">
-                        <datalist id="sanpham">
-                            <option value="sp 1">
-                            <option value="sp 2">
-                        </datalist>
-                    </div>
-                    <div class="formInput">
-                        <i id="tbGiaMon" class="fa-solid fa-money-check-dollar"></i>
-                        <input type="text" id="giaMon" maxlength="9" placeholder="Giá" onkeyup="dinhDangSo('giaMon')"
-                            onblur="checkRong('giaMon', 'tbGiaMon')">
-                    </div>
-                    <div class="formInput">
-                        <i id="tbSoLuong" class="fa-solid fa-list-ol"></i>
-                        <input type="text" id="soLuong" maxlength="9" placeholder="Số lượng"
-                            onkeyup="dinhDangSo('soLuong')" onblur="checkRong('soLuong', 'tbSoLuong')">
-                    </div>
-                    <div class="formButton">
-                        <div id="button" class="button">
-                            <button id="themSanPham" onclick="ban()" type="button">
-                                <i class="fa-solid fa-hand-holding-dollar"></i>
-                                Bán
-                            </button>
-                        </div>
-                        <div id="button" class="button">
-                            <button id="xoaGiaTri" onclick="resetForm()" type="button">
-                                Reset
-                            </button>
-                        </div>
-
-                        <div id="tbKetQua" class="tbKetQua">
-
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="mainList chiTietBanHang">
-                <div id="donHang" class="listStyle">
-                    <div class="donHang">
-                        <h3>Ngày</h3>
-                        <h3>Số phiếu</h3>
-                        <h3>Khách hàng</h3>
-                        <table>
-                            <tr>
-                                <th>Stt</th>
-                                <th>Tên</th>
-                                <th>Giá</th>
-                                <th>SL</th>
-                                <th>Thành tiền</th>
-                            </tr>
-                            <tbody>
-                                <tr>
-                                    <td class="number">1</td>
-                                    <td class="name">cà phê</td>
-                                    <td class="number">20,000</td>
-                                    <td class="number">3</td>
-                                    <td class="number">60,000</td>
-                                </tr>
-                                <tr>
-                                    <td class="number">1</td>
-                                    <td class="name">cà phê</td>
-                                    <td class="number">20,000</td>
-                                    <td class="number">3</td>
-                                    <td class="number">60,000</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3" class="thaoTac">Tổng</td>
-                                    <td class="number">3</td>
-                                    <td class="number">60,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="formbutton">
-                            <div class="button">
-                                <button>Thanh toán</button>
-                                <button>Xóa</button>
-                            </div>
-                        </div>
+                    <div id="nutBaoCao" class="nutBaoCao">
+                        <button type="button">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span><a href="./baocao.html">Báo cáo</a></span>
+                        </button>
                     </div>
                 </div>
 
+                <div id="mainForm" class="mainForm height360">
+                    <form id="formBanHang" action="">
+                        <div class="formInput">
+                            <button id="nutTatForm" type="button" onclick="nutTatMoForm()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <button style="margin-left: auto;" type="button" class="taoPhieuMoi" onclick="taoPhieuMoi()">
+                                <i class="fa-solid fa-file-circle-plus"></i>Phiếu mới
+                            </button>
+                        </div>
+                        <div class="formInput">
+                            <input type="text" id="ma" placeholder="Mã" hidden>
+                        </div>
+                        <div class="formInput">
+                            <i id="tbNgay" class="fa-solid fa-calendar-days"></i>
+                            <input type="date" id="ngayThangNam" onblur="checkRong('ngay', 'tbNgay')" readonly>
+                        </div>
+                        <div class="formInput">
+                            <i id="tbSoPhieu" class="fa-solid fa-hashtag"></i>
+                            <input type="text" id="soPhieu" maxlength="20" placeholder="Số phiếu"
+                                onblur="checkRong('soPhieu', 'tbSoPhieu')">
+                        </div>
+
+                        <div class="formInput">
+                            <i id="tbKhachHang" class="fa-solid fa-users"></i>
+                            <input list="khachhang" id="khachHang" maxlength="20" placeholder="Khách hàng" autofocus
+                                onblur="checkRong('khachHang', 'tbKhachHang')">
+                            <datalist id="khachhang">
+                                <option value="Khách VIP">
+                                <option value="Khách quen">
+                                <option value="Khách mới">
+                                <option value="Khách lạ">
+                            </datalist>
+                        </div>
+                        <div class="formInput">
+                            <i id="tbSanPham" class="fa-solid fa-mug-hot"></i>
+                            <input type="text" id="sanPham" maxlength="20" placeholder="Tên sản phẩm" autocomplete="off"
+                                onblur="checkRong('sanPham', 'tbSanPham')" onkeyup="showSanPham()" onclick="showSanPham()">
+                            <!-- <datalist id="listSanPham">
+
+                            </datalist> -->
+                        </div>
+                        <div id="showSanPham" class="showSanPham none">
+                            <table>
+                                <tr>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Thành tiền</td>
+                                    <th>Xuất</td>
+                                </tr>
+                                <tbody id="showListSanPham">
+
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
 
             </div>
 
+            <div class="mainList chiTietBanHang">
+                <div id="donHang" css="listStyle">
+                    <h2>Chi tiết bán hàng</h2>
+                    <div id="showDonHang">
 
 
+
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

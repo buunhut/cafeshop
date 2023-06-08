@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+input {
+  font-family: "Montserrat", sans-serif;
+}
+
 h1,
 h2,
 h3 {
@@ -12,54 +23,69 @@ h3 {
 }
 
 .none {
-  display: none;
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden;
+}
+
+.height360 {
+  height: 500px !important;
+  transform: translateY(0) !important;
+  visibility: hidden;
+  transition: all 0.5s;
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 20px 0;
 }
 .container .main {
   display: flex;
   justify-content: space-around;
+  align-items: flex-start;
 }
 .container .main .menu {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  height: 80px;
   max-width: 400px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100px;
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
-.container .main .menu .nutTaoSanPham,
+.container .main .menu .nutTatMoForm,
 .container .main .menu .nutBanHang,
 .container .main .menu .nutChotCa,
 .container .main .menu .nutBaoCao {
-  width: 200px;
+  width: 180px;
 }
-.container .main .menu .nutTaoSanPham button,
+.container .main .menu .nutTatMoForm button,
 .container .main .menu .nutBanHang button,
 .container .main .menu .nutChotCa button,
 .container .main .menu .nutBaoCao button {
-  padding: 8px 16px;
+  padding: 8px 10px;
   color: white;
   background-color: purple;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  border: 1px solid white;
+  border: none;
   cursor: pointer;
   width: 100%;
   display: flex;
 }
-.container .main .menu .nutTaoSanPham button i,
+.container .main .menu .nutTatMoForm button i,
 .container .main .menu .nutBanHang button i,
 .container .main .menu .nutChotCa button i,
 .container .main .menu .nutBaoCao button i {
-  margin-right: 5px;
+  margin-right: 2px;
   width: 20px;
 }
-.container .main .menu .nutTaoSanPham button a,
+.container .main .menu .nutTatMoForm button a,
 .container .main .menu .nutBanHang button a,
 .container .main .menu .nutChotCa button a,
 .container .main .menu .nutBaoCao button a {
@@ -67,35 +93,70 @@ h3 {
   color: white;
 }
 .container .main .mainForm {
-  width: 420px;
+  max-width: 400px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  padding: 20px;
   background-color: white;
-  border-radius: 10px;
   position: relative;
+  margin-top: 20px;
+  height: 0;
+  overflow: hidden;
+  transform: translateY(-200%);
+  visibility: visible;
+  transition: all 0.3s;
 }
 .container .main .mainForm form {
-  width: 380px;
+  padding: 20px;
+  width: 100%;
 }
 .container .main .mainForm form hr {
   margin: 20px 0;
 }
+.container .main .mainForm form .formInput input {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid purple;
+}
+.container .main .mainForm form .formInput button.taoPhieuMoi {
+  background-color: purple;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.container .main .mainForm form .formInput button.taoPhieuMoi:hover {
+  background-color: rgb(129, 18, 184);
+}
+.container .main .mainForm form .formInput button.taoPhieuMoi i {
+  font-size: 16px;
+  color: white;
+}
 .container .main .mainForm form .formInput.timKiem {
   background-color: purple;
   width: 100%;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 2px;
   margin-top: 5px;
+  border-radius: 0 7px 7px 0;
+}
+.container .main .mainForm form .formInput.timKiem input {
+  outline: none;
+  border: none;
+  border-radius: 0 5px 5px 0;
 }
 .container .main .mainForm form .formInput.timKiem i {
   color: white;
-  margin-top: 3px;
+  text-align: center;
+  font-size: 14px;
 }
 .container .main .mainForm form .formInput {
   margin-bottom: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.container .main .mainForm form .formInput h2 {
+  margin-left: auto;
 }
 .container .main .mainForm form .formInput i {
   color: purple;
@@ -111,20 +172,19 @@ h3 {
   padding: 0 10px;
 }
 .container .main .mainForm form .formInput #nutTatForm {
-  background-color: purple;
   border: none;
+  background-color: white;
   text-align: center;
   border-radius: 100%;
   cursor: pointer;
   position: absolute;
   top: 5px;
-  right: 5px;
+  left: 5px;
 }
 .container .main .mainForm form .formInput #nutTatForm i {
-  color: white;
+  color: purple;
   margin: 0;
   font-size: 14px;
-  font-weight: 600;
 }
 .container .main .mainForm form .formButton {
   display: flex;
@@ -133,7 +193,7 @@ h3 {
 }
 .container .main .mainForm form .formButton .button {
   width: 50%;
-  margin: 5px;
+  margin: 5px 5px 0 0;
 }
 .container .main .mainForm form .formButton .button button {
   background-color: purple;
@@ -141,8 +201,6 @@ h3 {
   width: 100%;
   height: 40px;
   border: none;
-  font-size: 14px;
-  letter-spacing: 2px;
   cursor: pointer;
   border-radius: 8px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -159,38 +217,237 @@ h3 {
 .container .main .mainForm form .formButton .tbKetQua h3 {
   text-align: center;
 }
-.container .main .mainForm .ketQuaTimKiem {
-  padding: 20px 0;
+.container .main .mainForm .showSanPham {
+  height: 230px;
+  margin: 10px 0;
+  background-color: rgb(250, 250, 250);
+  overflow-y: scroll;
 }
-.container .main .mainForm .ketQuaTimKiem table {
-  border-collapse: collapse;
-  width: 100%;
+.container .main .mainForm .showSanPham table {
+  margin: 10px 0;
 }
-.container .main .mainForm .ketQuaTimKiem table tr:nth-child(even) {
-  background-color: rgb(255, 245, 250);
+.container .main .mainForm .showSanPham table tr th {
+  text-align: left;
+  padding: 0 10px 10px 0;
 }
-.container .main .mainForm .ketQuaTimKiem table tr:nth-child(even) th {
-  padding: 5px 10px;
+.container .main .mainForm .showSanPham table tr td {
+  padding: 0 10px 10px 0;
+}
+.container .main .mainForm .showSanPham table tr td p.tenSanPham {
+  color: purple;
+  font-size: 14px;
+}
+.container .main .mainForm .showSanPham table tr td p.giaSanPham {
+  color: red;
+  font-size: 12px;
+}
+.container .main .mainForm .showSanPham table tr td input.thanhTien {
+  padding: 0 5px;
+  text-align: right;
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid purple;
+  font-size: 14px;
+}
+.container .main .mainForm .showSanPham table tr td input.thanhTien:focus {
+  outline: none;
+}
+.container .main .mainForm .showSanPham table tr td button.xuatBan {
+  width: 40px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  border: none;
   background-color: purple;
   color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.container .main .mainForm .showSanPham table tr td button.xuatBan:hover {
+  background-color: red;
+  transition: all 0.5s;
+}
+.container .main .mainForm .showSanPham table tr td .soLuongSanPham {
+  display: flex;
+  align-items: center;
+}
+.container .main .mainForm .showSanPham table tr td .soLuongSanPham input {
+  width: 50px;
+  height: 30px;
+  padding: 0 5px;
+  border: none;
+  border-bottom: 1px solid purple;
+  font-size: 14px;
+}
+.container .main .mainForm .showSanPham table tr td .soLuongSanPham input:focus {
+  outline: none;
+}
+.container .main .mainForm .showSanPham table tr td .soLuongSanPham .tangGiam i {
+  font-size: 10px;
+  display: block;
+  margin-left: 3px;
+  cursor: pointer;
 }
 .container .main .mainList.chiTietBanHang {
-  width: 900px;
-  padding: 20px;
+  max-width: 600px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
 }
+.container .main .mainList.chiTietBanHang #donHang .donHang {
+  border: 1px solid rgb(220, 220, 220);
+  margin: 10px 0;
+  padding: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang .donHangTitle {
+  text-align: center;
+  border-bottom: 2px solid rgb(165, 165, 165);
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang .donHangTitle span i {
+  width: 20px;
+  height: 20px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang .donHangTitle .dateTime {
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang .donHangTitle .khachHang {
+  text-align: left;
+  margin-top: 5px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang .donHangTitle .khachHang span {
+  font-weight: 600;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table {
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr th {
+  padding: 5px 10px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: purple;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr th:last-child {
+  padding: 0 0 10px 0;
+  text-align: center;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td {
+  padding: 5px 10px;
+  border-top: 1px solid rgb(222, 222, 222);
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td:last-child {
+  text-align: center;
+  padding: 10px 0;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td p.tenSanPham {
+  color: purple;
+  font-size: 14px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td p.giaSanPham {
+  color: red;
+  font-size: 12px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td input.thanhTien {
+  padding: 0 5px;
+  text-align: right;
+  width: 80px;
+  height: 30px;
+  border: none;
+  font-size: 14px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td input.thanhTien:focus {
+  outline: none;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td .soLuongSanPham input {
+  text-align: right;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td button.xoaBan {
+  font-size: 16px;
+  font-weight: 400;
+  border: none;
+  color: purple;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td button.xoaBan:hover {
+  color: red;
+  transition: all 0.5s;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td button.xoaBan i {
+  text-align: center;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td .soLuongSanPham {
+  display: flex;
+  align-items: center;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td .soLuongSanPham input {
+  width: 50px;
+  height: 30px;
+  padding: 0 5px;
+  border: none;
+  font-size: 14px;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td .soLuongSanPham input:focus {
+  outline: none;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td .soLuongSanPham .tangGiam i {
+  font-size: 10px;
+  display: block;
+  margin-left: 3px;
+  cursor: pointer;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td.tongSoLuong {
+  text-align: right;
+  padding-right: 28px;
+  font-weight: 600;
+  color: purple;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td.tongTien {
+  text-align: right;
+  padding: 10px;
+  font-weight: 600;
+  color: purple;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td.optionThanhToan {
+  border-top: 2px solid rgb(165, 165, 165);
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td.optionThanhToan button.thanhToan {
+  font-size: 12px;
+  background-color: purple;
+  color: white;
+  border: 1px solid purple;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td.optionThanhToan button.thanhToan:hover {
+  background-color: rgb(129, 18, 184);
+  transition: all 0.3s;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td.optionThanhToan button.xoaDonHang {
+  font-size: 12px;
+  background-color: transparent;
+  color: purple;
+  border: 1px solid purple;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+}
+.container .main .mainList.chiTietBanHang #donHang .donHang table tr td.optionThanhToan button.xoaDonHang:hover {
+  background-color: rgb(129, 18, 184);
+  color: white;
+  transition: all 0.3s;
+}
 .container .main .mainList {
-  width: 900px;
-  padding: 20px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
-.container .main .mainList .listStyle {
-  width: 100%;
-  margin-bottom: 20px;
-}
 .container .main .mainList .listStyle table {
-  width: 400px;
+  max-width: 400px;
   margin-top: 10px;
   border-collapse: collapse;
 }
@@ -198,7 +455,8 @@ h3 {
   padding: 5px 10px;
   background-color: purple;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
   border: 1px solid silver;
   text-transform: capitalize;
 }
@@ -224,7 +482,8 @@ h3 {
 }
 .container .main .mainList .listStyle table tr td {
   padding: 5px 10px;
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 500;
   text-transform: capitalize;
   border: 1px solid silver;
 }
@@ -232,17 +491,16 @@ h3 {
   text-align: center;
 }
 .container .main .mainList .listStyle table tr td button {
-  width: 20px;
-  height: 20px;
   border: none;
   color: purple;
   cursor: pointer;
+  background-color: transparent;
 }
-.container .main #listKieu2 table tbody tr td {
-  border: none;
-}
-.container .main #listKieu2 table tbody tr:nth-child(even) {
-  background-color: rgb(255, 245, 250);
+.container .main .mainList .listStyle table tr td button i {
+  font-size: 14px;
+  text-align: center;
+  line-height: 20px;
+  margin: 0 2px;
 }
 
 @media screen and (max-width: 992px) {
@@ -292,32 +550,27 @@ h3 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px 5px;
   }
   .container .main .mainForm {
     width: 100%;
     padding: 20px 0;
+    margin-top: 10px;
   }
   .container .main .mainForm form .formInput {
     width: 100%;
     margin-top: 5px;
   }
   .container .main .mainList.chiTietBanHang {
-    width: 100%;
-    padding: 10px 0px;
+    max-width: 400px;
+    margin-top: 10px;
+    padding: 10px;
+    justify-content: space-around;
   }
   .container .main .mainList {
-    width: 100%;
-    padding: 10px 0px;
+    padding: 0;
   }
   .container .main .mainList .listStyle {
-    width: 100%;
-    margin: 0 auto;
-    padding: 10px;
     overflow-x: scroll;
-  }
-  .container .main .mainList .listStyle table {
-    width: 100%;
   }
   .container .main .mainList .listStyle table tr th,
   .container .main .mainList .listStyle table td {
